@@ -145,41 +145,52 @@
                                     <h4 class="text-muted">S'inscrivez-vous et partagez votre activité</h4>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name" name="name" value="<?=set_value('name');?>" placeholder="Nom" required>
+                                    <input type="text" class="form-control form-control-sm" id="name" name="name" value="<?=set_value('name');?>" placeholder="Nom" required>
                                     <small class="text-danger"><?= form_error('name','<em>','</em>') ?></small>
                                 </div> 
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="email" name="email" value="<?=set_value('email');?>" placeholder="Email" required>
+                                    <input type="email" class="form-control form-control-sm" id="email" name="email" value="<?=set_value('email');?>" placeholder="Email" required>
                                     <small class="text-danger"><?= form_error('email','<em>','</em>') ?></small>
                                 </div> 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="address" name="address" value="<?=set_value('addrses');?>" placeholder="Addresse physique">
+                                    <input type="text" class="form-control form-control-sm" id="address" name="address" value="<?=set_value('addrses');?>" placeholder="Addresse physique">
                                     <small class="text-danger"><?= form_error('address','<em>','</em>') ?></small>
                                 </div> 
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" id="phone" name="phone" value="<?=set_value('phone');?>" placeholder="Téléphone" required>
+                                    <input type="tel" class="form-control form-control-sm" id="phone" name="phone" value="<?=set_value('phone');?>" placeholder="Téléphone" required>
                                     <small class="text-danger"><?= form_error('phone','<em>','</em>') ?></small>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="site" name="site" value="<?=set_value('site');?>" placeholder="Site web (facultatif)">
+                                    <input type="text" class="form-control form-control-sm" id="site" name="site" value="<?=set_value('site');?>" placeholder="Site web (facultatif)">
                                     <small class="text-danger"><?= form_error('site','<em>','</em>') ?></small>
-                                </div> 
+                                </div>  
 
-                                <div class="form-group"> 
-                                    <select name="gender"  id="gender"  class="form-group form-control" required>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="account" id="individuel" value="PERSONAL">
+                                    <label class="form-check-label" for="individuel"> <small>Compte Individuel</small> </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="account" id="company" value="COMPANY">
+                                    <label class="form-check-label" for="company"> <small>Compte Entreprise</small> </label>
+                                </div> 
+  
+                                <!-- <div class="form-group"> 
+                                    <select name="gender"  id="gender"  class="form-group form-control form-control-sm" required>
                                         <option value="m" selected>Homme</option> 
-                                        <option value="f" >Femme</option> 
+                                        <option value="f">Femme</option> 
                                     </select>
                                     <small class="text-danger"><?= form_error('gender','<em>','</em>') ?></small>
-                                </div>
+                                </div> -->
+
                                 <div class="form-group">
-                                    <textarea class="form-control" name="bio" id="bio" value="<?=set_value('bio');?>" rows="1" placeholder="Une biographie sur vous..."></textarea>
+                                    <textarea class="form-control" name="bio" id="bio" value="<?=set_value('bio');?>" rows="1" placeholder="Une description sur vous..."></textarea>
                                     <small class="text-danger"><?= form_error('bio','<em>','</em>') ?></small>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="imageUrl"> <small class="text-center">Votre photo</small> </label>
-                                    <input type="file"  value="<?=set_value('imageUrl');?>" id="imageUrl" name="imageUrl"><br>
+                                    <input type="file" class="form-control-sm" value="<?=set_value('imageUrl');?>" id="imageUrl" name="imageUrl"><br>
                                     <div class="form-group">
                                         <div id="uploaded_image">
 
@@ -187,15 +198,17 @@
                                     </div> 
                                 </div>
 
+
+
                                 
                                 <div class="form-group">
-                                    <input type="password" class="form-control" value="<?=set_value('password');?>" id="password" name="password" placeholder="Mot de passe *" required>
+                                    <input type="password" class="form-control form-control-sm" value="<?=set_value('password');?>" id="password" name="password" placeholder="Mot de passe *" required>
                                     <small class="text-muted text-left"> <i>Assurez-vous qu'il s'agit d'au moins 15 caractères OU d'au moins 8 caractères.</i> </small>
                                     <small class="text-danger"><?= form_error('password','<em>','</em>') ?></small>
                                 </div> 
                                 
                                 <div class="form-group">
-                                    <input type="password" class="form-control" value="<?=set_value('confirm');?>" id="confirm" name="confirm" placeholder="Confimer votre mot de passe *" required>
+                                    <input type="password" class="form-control form-control-sm" value="<?=set_value('confirm');?>" id="confirm" name="confirm" placeholder="Confimer votre mot de passe *" required>
                                     <small class="text-danger"><?= form_error('confirm','<em>','</em>') ?></small>
                                 </div> 
 

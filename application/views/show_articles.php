@@ -127,43 +127,8 @@
 </header>
  
         <!--================Testimonials Area =================-->
-        <section class="testimonials_area p_120">
-        	<div class="container">
-        		<div class="main_title">
-        			<!-- <h2>Toutes les catégories</h2> -->
-        			<!-- <p>Toutes les catégories.</p> -->
-        		</div>
-        		<div class="testi_inner">
-					<div class="testi_slider owl-carousel"> 
-                        <?php
-                            // if(isset($domains)) 
-                            // {
-                            //     if($domains -> num_rows() > 0) 
-                            //     {
-                            //         foreach ($domains -> result() as $row) 
-                            //         {
-                            //             echo '
-                            //             <div class="item">
-                            //                 <div class="testi_item" style="background: #1d3163;">
-                            //                     <a href="#"><h4 class="text-light">'.$row->title.'</h4></a>
-                            //                     <a href="#"><i class="fa fa-star"></i></a>
-                            //                     <a href="#"><i class="fa fa-star"></i></a>
-                            //                     <a href="#"><i class="fa fa-star"></i></a>
-                            //                     <a href="#"><i class="fa fa-star"></i></a>
-                            //                     <a href="#"><i class="fa fa-star-half-o"></i></a>
-                            //                 </div>
-                            //             </div>
-                            //             ';
-                            //         }
-                            //     }
-                            // } 
-                        ?> 				
-
-                    
-					 
-					</div>
-        		</div>
-        	</div>
+        <section class="testimonials_area p_120 p-4">
+        	 
         </section>
         <!--================End Testimonials Area =================-->
 

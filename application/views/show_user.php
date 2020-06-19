@@ -173,6 +173,7 @@
                                                 <li><a>'.$user[0]->address.'<i class="fa fa-map-marker"></i></a></li>
                                                 <li><a>'.$user[0]->phone.'<i class="lnr lnr-phone"></i></a></li>
                                                 <li><a>'. if_isset($user[0]->site) .'<i class="fa fa-tag"></i></a></li>
+                                                <li><a>'. if_isset($user[0]->type) .'<i class="fa fa-bank"></i></a></li>
                                                 <li><a class="excert text-right">'. if_isset($user[0]->bio) .'<i class="fa fa-book"></i></a></li>
                                             </ul>
                                             <ul class="social-links">

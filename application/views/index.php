@@ -206,20 +206,14 @@
                                                                 {
                                                                     foreach ($domains -> result() as $domain) 
                                                                     {
-
-                                                                        // if($category[0]->CODE == $domain->CODE) {
-                                                                        //     echo '<a class="active" href="'.site_url('activity/show_all_articles_id/'.$domain->CODE).'">'.$category[0]->title.' </a>';
-                                                                        // } else {
-                                                                        //     echo '<a href="'.site_url('activity/show_all_articles_id/'.$domain->CODE).'">'.$domain->title.' </a>';
-                                                                        // }
-
-                                                                        if($domains_arr->result()[0]->CODE == $domain->CODE) {
-                                                                            echo '<a class="active" href="'.site_url('activity/show_all_domain/'.$domain->CODE) .'">'.$domain->title.'</a>';
+                                                                        if($row->id_category == $domain->id) {
+                                                                            echo '<a class="active" href="'.site_url('activity/show_all_domain/'.$domain->CODE) .'"><strong>'.$domain->title.'</strong> </a>';
                                                                         } else {
                                                                             echo 
                                                                             '
                                                                                 <a href="'.site_url('activity/show_all_domain/'.$domain->CODE) .'">'.$domain->title.'</a>
-                                                                            ';                                                                       } 
+                                                                            ';
+                                                                        } 
                                                                        
                                                                     }
                                                                 }
@@ -231,11 +225,11 @@
                                                             //<li><a href="'.site_url('user/show_user/'.$user[0]->id).'">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
                                                             echo 
                                                             '
-                                                                <li><a>'.$users[$i][0]->name.'<i class="lnr lnr-user"></i></a></li>
+                                                            <!--<li><a>'.$users[$i][0]->name.'<i class="lnr lnr-user"></i></a></li>-->
                                                                 <li><a>'.$row->date.'<i class="lnr lnr-calendar-full"></i></a></li>
                                                                 <li><a>'.$row->view.' Vues<i class="lnr lnr-eye"></i></a></li>
-                                                                <li><a href="'.site_url('activity/show_article/'.$row->id).'">0 Comments<i class="lnr lnr-bubble"></i></a></li>
-                                                                <!-- <li><a href="'.site_url('activity/show_article/'.$row->id).'">0 Likes<i class="fa fa-heart "></i></a></li> -->
+                                                                <!--<li><a href="'.site_url('activity/show_article/'.$row->id).'">0 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                                                 <li><a href="'.site_url('activity/show_article/'.$row->id).'">0 Likes<i class="fa fa-heart "></i></a></li> -->
                                                             '
                                                             
                                                             ;
