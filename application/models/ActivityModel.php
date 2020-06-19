@@ -123,6 +123,16 @@ class ActivityModel extends CI_Model {
         return $this->db->where('id', $id)->get($this->table_article);
     }
 
+    /**
+     * get_articles_where_category($ID_DOMAIN)
+     *
+     * @param [type] $ID_DOMAIN
+     * @return void
+     */
+    public function get_articles_where_category($ID_DOMAIN) {
+        $this->db->order_by('id', 'DESC');
+        return $this->db->where('id_category', $ID_DOMAIN)->get($this->table_article);
+    }
 
     /**
      * count_articles()
@@ -188,9 +198,7 @@ class ActivityModel extends CI_Model {
         return $this->db->delete($this->table_article, array('id' => $id));  
     }
 
-
-
-
+    
 
 
 

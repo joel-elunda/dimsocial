@@ -211,9 +211,11 @@ class Activity extends CI_Controller {
      * @return void
      */
     function show_articles() {
-        $CODE_DOMAIN = $this->uri->segment(3);
-        $data['articles'] = $this->ActivityModel->get_where_desc_articles($CODE_DOMAIN);
+        $ID_DOMAIN = $this->uri->segment(3);
+        $data['articles'] = $this->ActivityModel->get_articles_where_category($ID_DOMAIN);
+        $data['domains'] = $this->ActivityModel->get_domains();
         if(empty($data) || $data != NULL) {
+            // print_r($data['articles']);
             $this->load->view('show_articles', $data);
         } else {
             echo 'Data articles ID not found.';

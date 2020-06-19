@@ -147,7 +147,7 @@
                                         echo '
                                         <div class="item rounded-0">
                                             <div class="testi_item rounded-0">
-                                                <a href="'.site_url('activity/show_articles/'.$row->CODE).'"><h4 class="text-muted">'.$row->title.'</h4></a>
+                                                <a href="'.site_url('activity/show_articles/'.$row->id).'"><h4 class="text-muted">'.$row->title.'</h4></a>
                                                 <a href=""><i class="fa fa-star"></i></a>
                                                 <a href=""><i class="fa fa-star"></i></a>
                                                 <a href=""><i class="fa fa-star"></i></a>

@@ -127,7 +127,7 @@
 </header>
  
         <!--================Testimonials Area =================-->
-        <section class="testimonials_area p_120 p-4">
+        <section class="testimonials_area p_120 p-4" style="background-color: #fff;">
         	 
         </section>
         <!--================End Testimonials Area =================-->
@@ -159,14 +159,14 @@
                                                         '?>
                                                         <?php 
                                                             $domains_arr = $this->ActivityModel->get_domains();
-                                                            print_r($domains_arr->result()[0]->title);
+                                                            // print_r($domains_arr->result()[0]->title);
                                                             if(isset($domains)) 
                                                             {
                                                                 if($domains -> num_rows() > 0) 
                                                                 {
                                                                     foreach ($domains -> result() as $domain) 
                                                                     {
-                                                                        if($domains_arr->result()[0]->CODE == $domain->CODE) {
+                                                                        if($row->id_category == $domain->id) {
                                                                             echo '<a class="active" href="'.site_url('activity/show_all_domain/'.$domain->CODE) .'">'.$domain->title.'</a>';
                                                                         } else {
                                                                             echo 
@@ -186,9 +186,9 @@
                                                             '
                                                                 
                                                                 <li><a>'.$row->date.'<i class="lnr lnr-calendar-full"></i></a></li>
-                                                                <li><a href="'.site_url('activity/show_article/'.$row->id).'">'.$row->view.' M Views<i class="lnr lnr-eye"></i></a></li>
-                                                                <li><a href="'.site_url('activity/show_article/'.$row->id).'">0 Comments<i class="lnr lnr-bubble"></i></a></li>
-                                                                <li><a href="'.site_url('activity/show_article/'.$row->id).'">0 Likes<i class="fa fa-heart "></i></a></li>
+                                                                <li><a href="'.site_url('activity/show_article/'.$row->id).'">'.$row->view.'  Views<i class="lnr lnr-eye"></i></a></li>
+                                                                <!--<li><a href="'.site_url('activity/show_article/'.$row->id).'">0 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                                                <li><a href="'.site_url('activity/show_article/'.$row->id).'">0 Likes<i class="fa fa-heart "></i></a></li>-->
                                                             ';
                                                         ?>
 
@@ -213,12 +213,15 @@
              
                                             ';
                                         }
+                                    } else 
+                                    {
+
                                     }
                                 }
 
                             ?>
 
-                            <article class="row blog_item">
+                            <!-- <article class="row blog_item">
                                <div class="col-md-3">
                                    <div class="blog_info text-right">
                                         <div class="post_tag">
@@ -245,7 +248,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </article>
+                            </article> -->
                           
                         </div>
                     </div>
@@ -254,7 +257,7 @@
                             <aside class="single_sidebar_widget popular_post_widget">
                                 
                                 <!-- Button trigger modal -->
-                                <a href="#" class="btn widget_title btn btn-block rounded-0" style="background: #1d3163;" data-toggle="modal" data-target="#exampleModalCenter">
+                                <a href="#" class="btn widget_title btn btn-block rounded-0 border text-muted" style="background: transparent;" data-toggle="modal" data-target="#exampleModalCenter">
                                     Offres et publicités
                                 </a>
 
@@ -278,9 +281,10 @@
                                                             if($domains -> num_rows() > 0) 
                                                             {
                                                                 foreach ($domains -> result() as $row) {
-                                                                    echo '<a class="text-muted" href="'.site_url('activity/show_all_domain/' . $row->CODE).'"><li class="list-group-item list-group-item-action">'.$row->title.'</li></a>';
+                                                                    echo '<a class="text-muted" href="'.site_url('activity/show_articles/' . $row->id).'"><li class="list-group-item list-group-item-action">'.$row->title.'</li></a>';
                                                                 }
-                                                            }
+                                                            } 
+                                                            
                                                         }
                                                     ?>
                                                     
@@ -296,7 +300,7 @@
                                 <!-- *** MODAL MENU *** -->
                                 
                                 
-                                <h3 class="widget_title" style="background: #1d3163;">Posts récents</h3>
+                                <h3 class="widget_title p-0 text-muted border-bottom text-left" style="background: transparent;"><small>Posts récents</small> </h3>
 
                                 <?php
 
@@ -312,11 +316,15 @@
                                                     <img src="'.base_url().'upload/'.$row->imageUrl.'" alt="post" class="w-25 rounded-0">
                                                     <div class="media-body">
                                                         <a href="'.site_url('activity/show_article/'.$row->id).'"><h3>'.$row->title.'r</h3></a>
-                                                        <p>'.$row->time.' Hours ago</p>
+                                                        <p>Le '.$row->date.' à ' .$row->time. ' </p>
                                                     </div>
                                                 </div>
                                                 ';
                                             }
+                                        }
+                                        else 
+                                        {
+                                            echo '<p class="excert">Aucun post.</p>';
                                         }
                                     }
 
@@ -324,58 +332,13 @@
  
                                 <div class="br"></div>
                             </aside>
-                            <aside class="single_sidebar_widget post_category_widget">
-                                <!-- <h4 class="widget_title" style="background: #1d3163;">Post Catgories</h4> -->
-                                <ul class="list cat-list">
-                                  
-                                    <?php
-                                        if(isset($domains)) 
-                                        {
-                                            if($domains -> num_rows() > 0) 
-                                            {
-                                                foreach ($domains -> result() as $row) 
-                                                {
-                                                    echo '
-                                                    <li>
-                                                        <a href="'.site_url('activity/show_article/'.$row->id).'" class="d-flex justify-content-between">
-                                                            <p>'.$row->title.'</p>
-                                                            <p>0</p>
-                                                        </a>
-                                                    </li>
-                                                    ';
-                                                }
-                                            }
-                                        } 
-                                    ?> 		
-                                    														
-                                </ul>
-                                <div class="br"></div>
-                            </aside>
+                           
+                             
                             
-                            <aside class="single-sidebar-widget tag_cloud_widget">
-                                <!-- <h4 class="widget_title" style="background: #1d3163;">Tag Clouds</h4> -->
-                                <ul class="list">
-                                   
-                                    <?php
-                                        if(isset($domains)) 
-                                        {
-                                            if($domains -> num_rows() > 0) 
-                                            {
-                                                foreach ($domains -> result() as $row) 
-                                                {
-                                                    echo '<li><a href="'.site_url('activity/show_article/'.$row->id).'">'.$row->title.'</a></li>';
-                                                }
-                                            }
-                                        } 
-                                    ?> 				
-
-                                </ul>
-                            </aside>
-                            
-                            <aside class="single_sidebar_widget ads_widget">
+                            <!-- <aside class="single_sidebar_widget ads_widget">
                                 <a href="#"><img class="img-fluid" src="<?=base_url('assets/img/blog/add.jpg');?>" alt=""></a>
                                 <div class="br"></div>
-                            </aside>
+                            </aside> -->
                         </div>
                     </div>
                 </div>
