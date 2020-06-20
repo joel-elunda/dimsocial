@@ -145,14 +145,14 @@
                                         // <a href="#"><i class="fa fa-star-half-o"></i></a>
 
                                         echo '
-                                        <div class="item rounded-0">
-                                            <div class="testi_item rounded-0">
-                                                <a href="'.site_url('activity/show_articles/'.$row->id).'"><h4 class="text-muted">'.$row->title.'</h4></a>
+                                        <div class="item rounded-0" >
+                                            <div class="testi_item rounded-0 text-center" style="border-color:#f0f0f0;">
+                                                <a href="'.site_url('activity/show_articles/'.$row->id).'"><h4 style="color:#1d3163;">'.$row->title.'</h4></a>
+                                                <!-- <a href=""><i class="fa fa-star"></i></a>
                                                 <a href=""><i class="fa fa-star"></i></a>
                                                 <a href=""><i class="fa fa-star"></i></a>
                                                 <a href=""><i class="fa fa-star"></i></a>
-                                                <a href=""><i class="fa fa-star"></i></a>
-                                                <a href=""><i class="fa fa-star"></i></a>
+                                                <a href=""><i class="fa fa-star"></i></a> -->
                                             </div>
                                         </div>
                                         ';
@@ -198,7 +198,7 @@
 
                                                             
 
-                                                            $domains_arr = $this->ActivityModel->get_domains();
+                                                            // $domains_arr = $this->ActivityModel->get_domains();
                                                             // print_r($domains_arr->result()[0]->title);
                                                             if(isset($domains)) 
                                                             {
@@ -211,7 +211,7 @@
                                                                         } else {
                                                                             echo 
                                                                             '
-                                                                                <a href="'.site_url('activity/show_all_domain/'.$domain->CODE) .'">'.$domain->title.'</a>
+                                                                                <a href="'.site_url('activity/show_articles/'.$domain->id).'">'.$domain->title.'</a>
                                                                             ';
                                                                         } 
                                                                        

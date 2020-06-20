@@ -215,7 +215,15 @@
                                         }
                                     } else 
                                     {
-
+                                        echo '
+                                        <div class="alert alert-success bg-transparent border-0" role="alert">
+                                        <h4 class="alert-heading">Aucun post pour cette catégorie</h4>
+                                        <p>Connectez-vous et soyez les premiers à publier un article pour cette catégorie. Après avoir publier 
+                                        votre article sera classé premier dans cette catégorie. Cliquez sur le bouton ci-dessous
+                                        pour faire votre publication.</p>
+                                        <hr>
+                                        <a href="'.site_url('user/publish_activity').'" class="btn btn-transparent text-light btn-sm btn-block" style="background-color:#1d3163;">Publier un article</a>
+                                        </div>';
                                     }
                                 }
 
@@ -253,7 +261,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="blog_right_sidebar"> 
+                        <div class="blog_right_sidebar  bg-transparent border-0 border-bottom"> 
                             <aside class="single_sidebar_widget popular_post_widget">
                                 
                                 <!-- Button trigger modal -->
