@@ -182,7 +182,7 @@
                                                                 <li><a href="'.site_url('user/show_user/'.$user[0]->id).'">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
                                                                 <li><a>'.$row->date.'<i class="lnr lnr-calendar-full"></i></a></li>
                                                                 <li><a> '.$row->view.' Vues<i class="lnr lnr-eye"></i></a></li>
-                                                                <li><a> 0 Commentaires<i class="lnr lnr-bubble"></i></a></li>
+                                                                <!-- <li><a> 0 Commentaires<i class="lnr lnr-bubble"></i></a></li> -->
                                                             </ul>
                                                         </div>
                                                 </div>
