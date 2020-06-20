@@ -20,14 +20,16 @@ class User extends CI_Controller {
      *
      * @return array
      */
-    private function user_data() : array { 
-        return array (
+    private function user_data() : array 
+    { 
+        return array 
+        (
             'name' => $this->input->post('name', TRUE),
             'email' => $this->input->post('email', TRUE),
             'address' => $this->input->post('address', TRUE),
             'phone' => $this->input->post('phone', TRUE),
             'site' => $this->input->post('site', TRUE),
-            'gender' => $this->input->post('gender', TRUE),
+            'type' => $this->input->post('type', TRUE),
             'bio' => $this->input->post('bio', TRUE),
             'imageUrl' => $this->input->post('imageUrl', TRUE),
             'password' => $this->input->post('password', TRUE)
@@ -40,7 +42,8 @@ class User extends CI_Controller {
       *
       * @return array
       */
-    private function data() : array {
+    private function data() : array 
+    {
         $data['domains'] = $this->ActivityModel->get_domains();
         $data['articles'] = $this->ActivityModel->get_articles();
 
@@ -52,7 +55,8 @@ class User extends CI_Controller {
      *
      * @return array
      */
-    function user_login_data() : array {
+    function user_login_data() : array 
+    {
         return array (
             'email' => $this->input->post('email', TRUE),
             'password' => $this->input->post('password', TRUE)
@@ -213,7 +217,7 @@ class User extends CI_Controller {
             )
         );
 
-        $this->form_validation->set_rules('gender', 'gender', 'required', 
+        $this->form_validation->set_rules('type', 'type', 'required', 
             array(
                 'required' => 'Le champs %s est obligatoire.'
             )
@@ -241,16 +245,23 @@ class User extends CI_Controller {
                 'strip_tags' => 'Le champs  %s contient des caractères inapropriés.'
             )
         );
+ 
 
         if($this->form_validation->run()) {
-            // print_r($this->user_data());
+             
             $result = $this->UserModel->add_user($this->user_data());
-            if($result == TRUE) {
-                $data['user'] = $this->UserModel->get_where_user_email($this->data()['email']);
-                $this->load->view('profile', $data);
-            } else {
-                echo 'Failed';
+            $data['user'] = $this->UserModel->get_where_user_email($this->user_data()['email']);
+             
+            if($result == TRUE) {  
+                $this->session->set_tempdata($this->cast_object_to_array($data['user'][0]), NULL, 86500);
+                redirect(base_url().'user/profile');
+            }  
+            else 
+            { 
+                $this->session->set_tempdata($this->cast_object_to_array($data['user'][0]), NULL, 86500);
+                redirect(base_url().'user/profile');           
             }
+
         } else {
             print_r($this->user_data());
             echo 'Failed at form validation !';
@@ -322,7 +333,8 @@ class User extends CI_Controller {
     }
 
     function profile() {
-        if($this->session->id){
+
+        if( isset($this->session->id) || isset($this->session->tempdata('user')[0]->id)){
             $data['user'] = $this->UserModel->get_where_user_id($this->session->id);
             // print_r($data);
             $this->load->view('profile', $data);

@@ -167,11 +167,11 @@
 
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="account" id="individuel" value="PERSONAL">
+                                    <input class="form-check-input" type="radio" name="type" id="individuel" value="PERSONAL">
                                     <label class="form-check-label" for="individuel"> <small>Compte Individuel</small> </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="account" id="company" value="COMPANY">
+                                    <input class="form-check-input" type="radio" name="type" id="company" value="COMPANY">
                                     <label class="form-check-label" for="company"> <small>Compte Entreprise</small> </label>
                                 </div> 
   
@@ -233,7 +233,7 @@
                                                 {
                                                     foreach ($domains -> result() as $row) 
                                                     {
-                                                        echo '<li><a href="'.site_url('activity/get_activity/'.$row->id).'">'.$row->title.'</a></li>';
+                                                        echo '<li><a href="'.site_url('activity/show_articles/'.$row->id).'">'.$row->title.'</a></li>';
                                                     }
                                                 }
                                             } 
