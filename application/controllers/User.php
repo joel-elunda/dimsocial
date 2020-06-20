@@ -256,8 +256,7 @@ class User extends CI_Controller {
                 $this->session->set_tempdata($this->cast_object_to_array($data['user'][0]), NULL, 86500);
                 redirect(base_url().'user/profile');
             }  
-            else 
-            { 
+            else  { 
                 $this->session->set_tempdata($this->cast_object_to_array($data['user'][0]), NULL, 86500);
                 redirect(base_url().'user/profile');           
             }
@@ -265,7 +264,7 @@ class User extends CI_Controller {
         } else {
             print_r($this->user_data());
             echo 'Failed at form validation !';
-            // redirect(base_url().'user/sign_in_view');
+            redirect(base_url().'user/sign_in_view');
         }
 
     }

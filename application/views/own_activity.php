@@ -192,47 +192,56 @@
 
 
                             <?php 
- 
+
                                 if(isset($user) && isset($activity)) 
                                 {
-                                    echo 
-                                    '
-                                    <div class="col-lg-12">
-                                        <div class="feature-img">
-                                        <img class="img-fluid" src="'.base_url().'upload/'.$activity[0]->imageUrl.'" alt="">
-                                        </div>									
-                                    </div>
-
-                                    <div class="col-lg-3  col-md-3">
-                                        <div class="blog_info text-right">
-                                            <div class="post_tag">
-                                                <a class="active" href="'.site_url('activity/get_domain/').$activity[0]->domain.'">Technologie</a>  
-                                            </div>
-                                            <ul class="blog_meta list">
-                                                <li><a href="#">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
-                                                <!--<li><a href="#">'.$activity[0]->experience.' mois d\'expériences<i class="lnr lnr-calendar-full"></i></a></li>
-                                                 <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
-                                                <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li> -->
-                                            </ul>
-                                            <!--
-                                            <ul class="social-links">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-github"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                            </ul>
-                                            -->
+                                    if( ! empty($user) && ! empty($activity) )
+                                    {
+                                        echo 
+                                        '
+                                        <div class="col-lg-12">
+                                            <div class="feature-img">
+                                            <img class="img-fluid" src="'.base_url().'upload/'.$activity[0]->imageUrl.'" alt="">
+                                            </div>									
                                         </div>
-                                    </div>
+    
+                                        <div class="col-lg-3  col-md-3">
+                                            <div class="blog_info text-right">
+                                                <div class="post_tag">
+                                                    <a class="active" href="'.site_url('activity/get_domain/').$activity[0]->domain.'">Technologie</a>  
+                                                </div>
+                                                <ul class="blog_meta list">
+                                                    <li><a href="#">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
+                                                    <!--<li><a href="#">'.$activity[0]->experience.' mois d\'expériences<i class="lnr lnr-calendar-full"></i></a></li>
+                                                     <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
+                                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li> -->
+                                                </ul>
+                                                <!--
+                                                <ul class="social-links">
+                                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                                </ul>
+                                                -->
+                                            </div>
+                                        </div>
+                                        
+                               
+                                        <div class="col-lg-9 col-md-9 blog_details"> 
+                                            <h2>'.$activity[0]->name.'</h2>
+                                            <p class="excert">
+                                            '.$activity[0]->description.'
+                                            </p>
+                                        </div> 
+                                        ';
+                                    } else {
+                                        echo '
+                                        <div class="alert alert-primary col-md-12" role="alert" style="background:transparent;">
+                                            L\'utilisateur n\'a encore aucune activité, <a href="'.site_url('home/publish_activity').'" class="badge badge-primary p-1">créer une activité</a>.
+                                        </div>';
+                                    }
                                     
-                           
-                                    <div class="col-lg-9 col-md-9 blog_details"> 
-                                        <h2>'.$activity[0]->name.'</h2>
-                                        <p class="excert">
-                                        '.$activity[0]->description.'
-                                        </p>
-                                    </div> 
-                                    ';
                                 }
                                 else 
                                 {

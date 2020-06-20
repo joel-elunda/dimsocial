@@ -237,7 +237,7 @@ class Activity extends CI_Controller {
         $data['activities'] = $this->ActivityModel->get_activities() ; 
 
         if( ! empty($data) || $data != NULL) 
-        { 
+        {  
             // print_r($data['activity'][0]->name);
             $this->load->view('own_activity', $data);
         } 
@@ -321,7 +321,8 @@ class Activity extends CI_Controller {
      *
      * @return void
      */
-    public function modify_activity() {
+    public function modify_activity() 
+    {
         $id = $this->uri->segment(3);
         $data['activity'] = $this->ActivityModel->get_where_activity_id($id);
         if( ! empty($data) || $data != NULL) {

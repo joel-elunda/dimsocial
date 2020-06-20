@@ -151,16 +151,13 @@
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <input type="email" name="email" value="<?=set_value('email');?>" class="form-control rounded-0" id="email" placeholder="Email" required>
-                                            <small class="text-danger"><?= form_error('email','<em>','</em>') ?></small>
+                                            <small class="text-danger text-left"><?= form_error('email','<em>','</em>') ?></small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <input type="password" name="password" class="form-control rounded-0" id="password" placeholder="Mot de passe" required>
-                                            <small class="text-danger"><?= form_error('password','<em>','</em>') ?></small>
-                                            <small class="text-muted text-left">
-                                              
-                                            </small>
+                                            <small class="text-danger"><?= form_error('password','<em>','</em>') ?></small> 
                                         </div>
                                     </div> 
                                     

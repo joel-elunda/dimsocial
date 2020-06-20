@@ -8,7 +8,8 @@ class Home extends CI_Controller {
 	 * 
 	 * @return array
 	 */
-	private function data() : array {
+	private function data() : array 
+	{
 		$data['articles'] = $this->ActivityModel->get_desc_articles();
 		$data['activities'] = $this->ActivityModel->get_desc_activities();
 		$data['domains'] = $this->ActivityModel->get_domains();
@@ -28,7 +29,8 @@ class Home extends CI_Controller {
 		$this->load->view('index', $this->data());
 	}
 
-	public function list_activities() { 
+	public function list_activities() 
+	{ 
 		$this->load->view('list_activities', $this->data());
 	}
 
@@ -42,11 +44,13 @@ class Home extends CI_Controller {
 		$this->load->view('desc_blog');
 	}
 
-	public function publish_activity() 	{ 
+	public function publish_activity() 	
+	{ 
 		$this->load->view('publish_activity', $this->data());
 	}
 
-	public function publish_article() { 
+	public function publish_article() 
+	{ 
 		$this->load->view('publish_article', $this->data());
 	}
 
@@ -80,7 +84,7 @@ class Home extends CI_Controller {
 
 		$length = count($arr);
 
-		if(! empty($arr) || $arr != NULL) 
+		if(! empty($arr) || $arr != NULL)
 		{
 			for ($i=0; $i < $length; $i++)
 			{ 

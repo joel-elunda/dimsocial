@@ -346,6 +346,8 @@ class ActivityModel extends CI_Model {
         return $this->db->where('id_user', (int)$id)->get($this->table_activity)->result(); 
     }
     
+    
+
     /**
      * get_desc_activities()
      *
