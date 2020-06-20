@@ -54,6 +54,19 @@
                 color: #fff;
                 border: none; 
             }
+
+            @media (max-width: 414px) {
+                .blog_right_sidebar {
+                    margin-top: 15%;
+                }
+            } 
+
+
+            @media (max-width: 1024px) {
+                .blog_right_sidebar {
+                    margin-top: 10%;
+                }
+            }
         </style>
         
         <!-- *** jQuery *** -->
@@ -67,74 +80,74 @@
 
 
 
-<!-- *** NAVBAR *** -->
-<nav class="navbar navbar-expand-lg navbar-light  text-light" style="background: #1d3163;">
-    <a class="navbar-brand" href="<?=site_url();?>"><img src="<?=site_url('assets/img/main/logodim.png');?>" width="40" alt="" srcset=""></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <!-- *** NAVBAR *** -->
+        <nav class="navbar navbar-expand-lg navbar-light  text-light" style="background: #1d3163;">
+            <a class="navbar-brand" href="<?=site_url();?>"><img src="<?=site_url('assets/img/main/logodim.png');?>" width="40" alt="" srcset=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <div class="collapse navbar-collapse text-light" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto text-light">
-            <li class="nav-item">
-                <a class="nav-link text-light" href="<?=site_url();?>"><i class="fa fa-home"></i> Accueil <span class="sr-only">(current)</span></a>
-            </li> 
-            <?php 
-            
-            if(isset($this->session->name) || isset($this->session->email)) {
-                echo '
-                <li class="nav-item dropdown">
+            <div class="collapse navbar-collapse text-light" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto text-light">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="<?=site_url();?>"><i class="fa fa-home"></i> Accueil <span class="sr-only">(current)</span></a>
+                    </li> 
+                    <?php 
+                    
+                    if(isset($this->session->name) || isset($this->session->email)) {
+                        echo '
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user"></i> '.$this->session->name.'
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="'.site_url('user/profile/'.$this->session->id).'"><i class="fa fa-user-circle-o"></i> Voir mon compte</a> 
+                                    <a class="dropdown-item" href="'.site_url('user/show_user/'.$this->session->id).'"><i class="fa fa-user-circle-o"></i> Voir mon compte</a> 
                                     <a class="dropdown-item" href="'.site_url('activity/user_activity/'.$this->session->id).'"><i class="fa fa-user-newspaper-o"></i> Mon activité</a> 
                                 <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-danger" href="'.site_url('user/logout').'"><i class="fa fa-power-off"></i>  Se déconnecter</a>
                                 </div>
                             </li> 
-                ';
-            } else {
-                echo '
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="'.site_url('home/login').'"><i class="fa fa-user"></i> Se connecter</a>
-                </li> 
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="'.site_url('home/sign_in').'"><i class="fa fa-sign-in"></i> S\'incrire</a>
-                </li>
-                ';
-            }
-            ?>
+                        ';
+                    } else {
+                        echo '
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="'.site_url('home/login').'"><i class="fa fa-user"></i> Se connecter</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="'.site_url('home/sign_in').'"><i class="fa fa-sign-in"></i> S\'incrire</a>
+                        </li>
+                        ';
+                    }
+                    ?>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-newspaper-o"></i>  Offres et publicités
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="<?=site_url('');?>">Offres et publicités</a>
-                    <a class="dropdown-item" href="<?=site_url('');?>">Promouvoir vos activités</a>
-                <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?=site_url('home/politic');?>">Politiques de confidentialité</a>
-                </div>
-            </li> 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-newspaper-o"></i>  Offres et publicités
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="<?=site_url('');?>">Offres et publicités</a>
+                            <a class="dropdown-item" href="<?=site_url('');?>">Promouvoir vos activités</a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?=site_url('home/politic');?>">Politiques de confidentialité</a>
+                        </div>
+                    </li> 
 
-        </ul>
-        <!-- <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> -->
-    </div>
-</nav>
-<!-- *** NAVBAR *** -->
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form> -->
+            </div>
+        </nav>
+        <!-- *** NAVBAR *** -->
 
 
-</header>
+    </header>
  
     <!-- *** Project Form *** -->
     
         <!--================Contact Area =================-->
-        <section class="contact_area p_120">
+        <section class="contact_area p_120 mt-0 pt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-11">
@@ -153,11 +166,11 @@
                                     <select name="domain" value="<?=set_value('domain');?>" class="form-group form-control"  id="domain">
                                         <option value="none">Votre domaine</option>
                                         <?php
-                                            if(isset($categories)) 
+                                            if(isset($domains)) 
                                             {
-                                                if($categories -> num_rows() > 0) 
+                                                if($domains -> num_rows() > 0) 
                                                 {
-                                                    foreach ($categories -> result() as $row) 
+                                                    foreach ($domains -> result() as $row) 
                                                     {
                                                         echo '<option value="'.$row->CODE.'">'.$row->title.'</option>';
                                                     }
@@ -179,7 +192,7 @@
                                 
                                 <div class="form-group">
                                     <label for="imageUrl"> <small class="text-center">Sélectionner une image</small> </label>
-                                    <input type="file" value="<?=set_value('imageUrl');?>" class="form-control" name="imageUrl" id="imageUrl" >
+                                    <input type="file" value="<?=set_value('imageUrl');?>" class="form-control-sm" name="imageUrl" id="imageUrl" >
                                 </div>
                                 <div class="form-group">
                                     <div id="uploaded_image">
@@ -198,7 +211,7 @@
                             <div class="col-lg-5">
                                 <div class="blog_right_sidebar"> 
                                     <aside class="single_sidebar_widget popular_post_widget">
-                                        <h3 class="widget_title" style="background: #1d3163;">Posts récents</h3>
+                                        <h3 class="widget_title text-muted border-bottom p-0 text-left" style="background: transparent;"> <small>Posts récents</small> </h3>
                                         <div class="media post_item">
                                             <img src="<?=base_url('assets/img/blog/popular-post/post1.jpg');?>" alt="post">
                                             <div class="media-body">

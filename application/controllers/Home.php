@@ -46,7 +46,8 @@ class Home extends CI_Controller {
 
 	public function publish_activity() 	
 	{ 
-		$this->load->view('publish_activity', $this->data());
+		$data['domains'] = $this->ActivityModel->get_domains();
+ 		$this->load->view('publish_activity', $this->data());
 	}
 
 	public function publish_article() 

@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="<?=base_url('assets/img/main/logodim.png');?>" type="image/png">
-        <title>DIM Social - (Profile)</title>
+        <title>DIM Social - <?php if(isset($user) ){echo $user[0]->name;} ?> (Profile)</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="<?=base_url('assets/css/bootstrap.css');?>">
         <link rel="stylesheet" href="<?=base_url('assets/vendors/linericon/style.css');?>">
@@ -50,6 +50,18 @@
                 color: #fff;
                 border: none; 
             }
+
+            .blog_info .blog_meta li a i {
+                color: #222222;
+                font-size: 16px;
+                font-weight: 600;
+                padding-right: 15px;
+                line-height: 20px;
+                vertical-align: middle; 
+            }
+            .blog_info .blog_meta li a:hover {
+                color: #1d3163; 
+            }
         </style>
         <!-- main css -->
         <link rel="stylesheet" href="<?=base_url('assets/css/style.css');?>">
@@ -83,7 +95,7 @@
                 <i class="fa fa-user"></i> '.$this->session->name.'
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="'.site_url('user/profile/'.$this->session->id).'"><i class="fa fa-user-circle-o"></i> Voir mon compte</a> 
+                    <a class="dropdown-item" href="'.site_url('user/show_user/'.$this->session->id).'"><i class="fa fa-user-circle-o"></i> Voir mon compte</a> 
                     <a class="dropdown-item" href="'.site_url('activity/user_activity/'.$this->session->id).'"><i class="fa fa-user-newspaper-o"></i> Mon activité</a> 
                 <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="'.site_url('user/logout').'"><i class="fa fa-power-off"></i>  Se déconnecter</a>
@@ -130,9 +142,9 @@
         
       
         <!--================Blog Area =================-->
-        <section class="blog_area single-post-area p_120">
+        <section class="blog_area single-post-area p_120 pt-5">
             <div class="container">
-                <div class="row">
+                <div class="row justify-content-center">
                   
                     <div class="col-lg-4 posts-list">
                         <div class="single-post row">
@@ -153,28 +165,68 @@
                                     }
                                 }
                             
-                                if(isset($user)) {
+                                if(isset($user) && isset($this->session->id)) {
                                     echo
                                     // <img class="img-fluid" src="'.base_url().'upload/'.$user[0]->imageUrl.'" alt="">
-                                    '<div class="col-lg-12">
-                                        <div class="feature-img justify-content-end text-right">
+                                    '<div class="col-lg-12 border-bottom">
+                                        <div class="feature-img ">
                                             <figure class="figure">
                                                 <img src="'.base_url().'upload/'.$user[0]->imageUrl.'" class="figure-img img-fluid rounded" alt="...">
-                                                <figcaption class="figure-caption text-right">'.$user[0]->name.'</figcaption>
+                                                <figcaption class="figure-caption text-left">'.$user[0]->name.'</figcaption>
                                             </figure>
                                             
                                         </div>									
                                     </div>
 
-                                    <div class="col-lg-12  col-md-4">
-                                        <div class="blog_info text-right">
+                                    <div class="col-lg-12  col-md-12">
+                                        <div class="blog_info text-left">
                                             <ul class="blog_meta list"> 
-                                                <li><a>'.$user[0]->email.'<i class="fa fa-send"></i></a></li>
-                                                <li><a>'.$user[0]->address.'<i class="fa fa-map-marker"></i></a></li>
-                                                <li><a>'.$user[0]->phone.'<i class="lnr lnr-phone"></i></a></li>
-                                                <li><a>'. if_isset($user[0]->site) .'<i class="fa fa-tag"></i></a></li>
-                                                <li><a>'. if_isset($user[0]->type) .'<i class="fa fa-bank"></i></a></li>
-                                                <li><a class="excert text-right">'. if_isset($user[0]->bio) .'<i class="fa fa-book"></i></a></li>
+                                                <li><a><i class="fa fa-send"></i>'.$user[0]->email.'</a></li>
+                                                <li><a><i class="fa fa-map-marker"></i>'.$user[0]->address.'</a></li>
+                                                <li><a><i class="lnr lnr-phone"></i>'.$user[0]->phone.'</a></li>
+                                                <li><a><i class="fa fa-tag"></i>'. if_isset($user[0]->site) .'</a></li>
+                                                <li><a><i class="fa fa-bank"></i>'. if_isset($user[0]->type) .'</a></li>
+                                                <li><a class="excert text-right"><i class="fa fa-book"></i>'. if_isset($user[0]->bio) .'</a></li>
+                                            </ul>
+                                            <ul class="social-links">
+                                            <!-- <li><a href="https://web.facebook.com/dimeurclub/" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a></li>
+                                                <li> <a href="https://www.linkedin.com/in/dim-business-ab9221185" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-linkedin"><i class="sr-only">LikedIn</i></span></a></li>
+                                                <li><a href="https://twitter.com/Danieldimilung1" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a></li>
+                                                <li> <a href="https://www.instagram.com/dimbusinessfamily/" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a></li>
+                                                <li> <a href="https://www.youtube.com/channel/UCCWswgrLvQ2HqJo-HnSZasQ" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-youtube"><i class="sr-only">Youtube</i></span></a></li>
+                                                
+                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-github"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-behance"></i></a></li> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    ';
+                                } else {
+                                    echo
+                                    // <img class="img-fluid" src="'.base_url().'upload/'.$user[0]->imageUrl.'" alt="">
+                                    '<div class="col-lg-12 border-bottom">
+                                        <div class="feature-img justify-content-start text-right">
+                                            <figure class="figure">
+                                                <img src="'.base_url().'upload/'.$user[0]->imageUrl.'" class="figure-img img-fluid rounded" alt="...">
+                                                <figcaption class="figure-caption text-left">'.$user[0]->name.'</figcaption>
+                                            </figure>
+                                            
+                                        </div>									
+                                    </div>
+
+                                
+                                    <div class="col-lg-12  col-md-12">
+                                        <div class="blog_info text-left">
+                                            <ul class="blog_meta list"> 
+                                                <li><a><i class="fa fa-send"></i>'.$user[0]->email.'</a></li>
+                                                <li><a><i class="fa fa-map-marker"></i>'.$user[0]->address.'</a></li>
+                                                <li><a><i class="lnr lnr-phone"></i>'.$user[0]->phone.'</a></li>
+                                                <li><a><i class="fa fa-tag"></i>'. if_isset($user[0]->site) .'</a></li>
+                                                <li><a><i class="fa fa-bank"></i>'. if_isset($user[0]->type) .'</a></li>
+                                                <li><a class="excert text-right"><i class="fa fa-book"></i>'. if_isset($user[0]->bio) .'</a></li>
                                             </ul>
                                             <ul class="social-links">
                                             <!-- <li><a href="https://web.facebook.com/dimeurclub/" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a></li>
@@ -196,20 +248,6 @@
                             
                             ?>
 
-                            
-                            <div class="col-lg-6 col-md-8 blog_details">
-                                <!-- <h2>DIM Social - Technologie</h2> 
-                                 
-                                <p class="excert text-justify">
-                                Créer un réseau des entrepreneurs pour permettre à tous nos utilisateurs de partager leurs
-                                actualités, de faire la géolocalisation de leurs services. 
-                                <br> Ce réseau social permettra aux entreprises, entrepreneurs d’accroitre
-                                sensiblement leurs zones d’action, profiter de nos outils pour mieux évaluer les revenues,
-                                consulter les experts, permettre les échanges avec les professionnels et tenir de forums
-                                économiques et autres publicités pour la plateforme.
-                                </p> -->
-                            </div>
-                           
                         </div>
                         
                             
@@ -217,13 +255,16 @@
 
 
 
+                    <?php
 
+                    if(isset($this->session->id) && isset($user)) {
+                        echo '
                     <!-- *** SIDEBAR ***  -->
                     <div class="col-lg-4">
                         <div class="blog_right_sidebar sticky-top border-0"  style="background-color: #fff;"> 
-                            <aside class="single_sidebar_widget popular_post_widget mt-25"> 
+                            <aside class="single_sidebar_widget popular_post_widget"> 
 
-                                <h3 class="widget_title border-bottom text-left text-muted p-0" style="background: #FFF;"> <small>Paramètrer votre compte</small> </h3>
+                                <h3 class="widget_title border-bottom text-left text-muted p-0" style="background: #FFF;"> <small>Paramètrez votre compte</small> </h3>
                                 <!-- <ul class="blog_meta list">
                                     <li><a href="#" class="text-muted d-flex align-items-center justify-content-center"><i class="fa fa-info"></i><small> Modifier mes informations</small> </a></li>
                                     <li><a href="#" class="text-muted d-flex align-items-center justify-content-center"><i class="fa fa-photo"></i><small> Changer la photo</small> </a></li>
@@ -232,53 +273,45 @@
                                     <li><a href="#" class="text-muted d-flex align-items-center justify-content-center"><i class="fa fa-book"></i><small> Politiques de confidentialités</small> </a></li>
                                     <li><a href="#" class="text-danger d-flex align-items-center justify-content-center"><i class="fa fa-user"></i><small> Supprimer mon compte</small> </a></li>
                                 </ul> -->
-                                <div class="blog_info p-0 text-right">
-                                    <ul class="blog_meta text-right list">
+                                <div class="blog_info m-0 p-0 text-left">
+                                    <ul class="blog_meta list">
                                         <!-- <li><a><i class="lnr lnr-user"></i> Daniel Wa Mukina</a></li>
                                         <li><a>10 Juin, 2020<i class="lnr lnr-calendar-full"></i></a></li>
                                         <li><a>danielmukina@gmail.com<i class="lnr lnr-calendar-full"></i></a></li>
                                         <li><a>Femmes Katangaises 505, Haut-Katanga RDC<i class="lnr lnr-calendar-full"></i></a></li>
                                         <li><a>555 - 888 - 999<i class="lnr lnr-calendar-full"></i></a></li> -->
 
-                                        <?php
-
-                                            if(isset($user)) {
-                                                echo '
-                                                    <li><a href="'.site_url('user/update_profile/'.$user[0]->id).'"><small> Modifier mes informations</small><i class="fa fa-info"></i></a></li>
-                                                    <li><a href="'.site_url('user/update_imageUrl/'.$user[0]->id).'"><small> Changer la photo</small><i class="fa fa-photo"></i></a></li>
-                                                    <li><a href="'.site_url('user/update_password/'.$user[0]->id).'"><small> Mot de passe</small><i class="fa fa-key"></i></a></li>
-                                                    <hr>
-                                                    <li><a href="'.site_url('user/politic/'.$user[0]->id).'"><small> Politiques de confidentialités</small><i class="fa fa-book"></i></a></li>
-                                                    <li><a href="'.site_url('user/delete_account/'.$user[0]->id).'"><small> Supprimer mon compte</small><i class="fa fa-user"></i></a></li>
-                                                ';
-                                            }
-
-                                        ?>
-
-                                       
-                               
+                                        <li><a href="'.site_url('user/update_profile/'.$user[0]->id).'"><i class="fa fa-info"></i><small> Modifier mes informations</small></a></li>
+                                        <li><a href="'.site_url('user/update_imageUrl/'.$user[0]->id).'"><i class="fa fa-photo"></i><small> Changer la photo</small></a></li>
+                                        <li><a href="'.site_url('user/update_password/'.$user[0]->id).'"><i class="fa fa-key"></i><small> Mot de passe</small></a></li>
+                                        <hr>
+                                        <li><a href="'.site_url('home/politic/'.$user[0]->id).'"><i class="fa fa-book"></i><small> Politiques de confidentialités</small></a></li>
+                                        <li><a href=""><i class="fa fa-user"></i><small> Supprimer mon compte</small></a></li>
+                                        <!--'.site_url('user/delete_account/'.$user[0]->id).'-->
                                     </ul>
                                 </div>
-                                <div class="media post_item">
-                                    
-                                    <!-- <a class="btn btn-block border-0 text-muted rounded-0 text-left" style="background-color:#FFF;" href="#"><small>Mot de passe</small></a>  -->
-                                    <!-- <img src="" alt="post" class="w-25 rounded-0">
-                                    <div class="media-body">
-                                        <a href=""><h3>'.$row->title.'r</h3></a>
-                                        <p>'.$row->time.' Hours ago</p>
-                                    </div> -->
-                                    
-                                </div> 
- 
+                                
                                 <!-- <div class="br"></div> -->
+
+                               
+
                             </aside>
+                            ';
+
+                            
+                        } else {
+
+
+                        }
+        
+                    ?>
+        
+        
                     <!-- *** SIDEBAR ***  -->
+          
 
-
-
-
-
-
+                    
+ 
 
                 </div>
             </div>

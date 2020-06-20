@@ -55,11 +55,14 @@ class Activity extends CI_Controller {
      *
      * @return void
      */
-    public function view_own_articles() {
-        if(isset($this->session->id)){
+    public function view_own_articles() 
+    {
+        if(isset($this->session->id))
+        {
             $user_id = $this->session->id;
             $data['own_articles'] = $this->ActivityModel->get_where_activity($user_id);
-            if( ! empty($data) || $data != NULL) {
+            if( ! empty($data) || $data != NULL) 
+            {
                 $this->load->view('own_articles', $data);
             } else {
                 echo 'Data not found.';
@@ -250,7 +253,19 @@ class Activity extends CI_Controller {
 
     /**
      * publish_activity()
-     *
+     * 
+     * Lorsque l'utilisateur clique sur le bouton "publier" dans la vue "publish_activity"
+     * c'est la fonction ci-dessous qui gère les données venant du formulaire.
+     * Cela lui servira de publier l'activité liée à son compte.
+     * 
+     * Mise à jour
+     * ===========
+     * Cette fonctionnalité doit être mise à jour
+     * de manière à permettre l'utilisateur de maintenir plusieurs activités.
+     * Parce que pour le moment, DIM Social ne donne
+     * aux utilisateurs de ne publier qu'une seule activité
+     * pour mieux les catégoriser.
+     * 
      * @return void
      */
     function publish_activity() 
@@ -305,9 +320,11 @@ class Activity extends CI_Controller {
                 'already_exist' => 'Le donnée existe déjà',
             );
             $result = $this->ActivityModel->add_activity($this->activity_input_data());
-            if($result == TRUE) { 
+            if($result == TRUE) {  
+                // $data['activity'] = $this->
                 $this->load->view('index');
             } else {
+                // echo 'Failed, FALSE returned';
                 $this->load->view('publish_activity', $err);
             }
         } else {

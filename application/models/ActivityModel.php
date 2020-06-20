@@ -395,7 +395,7 @@ class ActivityModel extends CI_Model {
             return $this->done = FALSE;    
         }  
 
-        if( ! in_array($data['name'], $this->names())) {
+        if( ! in_array($data['description'], $this->descriptions())) {
             $this->db->insert($this->table_activity, $data);
             $this->done = TRUE;
         } else {
@@ -406,21 +406,22 @@ class ActivityModel extends CI_Model {
  
 
     /**
-     * names()
+     * descriptions()
      *
      * @return array
      */
-    private function names() : array {
+    private function descriptions() : array {
         $arr = $this->get_activities();
-        $names = array();
+        $descriptions = array();
 
         if(empty($arr)  || $arr == NULL) {
-            return $names;
+            return $descriptions;
         } else {
             foreach ($arr as $item) {
-                array_push($names, $item->email);
+                // print_r($item);
+                array_push($descriptions, $item->description);
             }
-            return $names;
+            return $descriptions;
         }
     }
 
