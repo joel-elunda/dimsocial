@@ -36,7 +36,11 @@ class Home extends CI_Controller {
 
 	public function login()
 	{
-		$this->load->view('login');
+		$art_count = $this->ActivityModel->count_articles();
+		$rand = mt_rand(1, $art_count);
+		$data['article'] = $this->ActivityModel->get_where_article($rand); 
+		$data['user'] = $this->UserModel->get_user_where_id($data['article']->result()[0]->id_user); 
+		$this->load->view('login', $data);
 	}
 
 	public function desc_blog()
@@ -46,13 +50,22 @@ class Home extends CI_Controller {
 
 	public function publish_activity() 	
 	{ 
-		$data['domains'] = $this->ActivityModel->get_domains();
- 		$this->load->view('publish_activity', $this->data());
+		if(isset($this->sesion->id) || isset($this->session->name)) {
+			$data['domains'] = $this->ActivityModel->get_domains();
+		 	$this->load->view('publish_activity', $this->data());
+		} else {
+			redirect(base_url() .'home/login');
+		}
 	}
 
 	public function publish_article() 
 	{ 
-		$this->load->view('publish_article', $this->data());
+		if(isset($this->sesion->id) || isset($this->session->name)) {
+			$this->load->view('publish_article', $this->data());
+		} else {
+			redirect(base_url() .'home/login');
+		}
+		
 	}
 
 	public function activity() 

@@ -471,6 +471,7 @@ class ActivityModel extends CI_Model {
         return $this->db->where('id', $id)->get($this->table_article)->result(); 
     }
 
+
     /**
      * count_comments()
      *

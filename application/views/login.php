@@ -50,6 +50,18 @@
                 color: #fff;
                 border: none; 
             }
+
+            .blog_info .blog_meta li a i {
+                color: #222222;
+                font-size: 16px;
+                font-weight: 600;
+                padding-right: 15px;
+                line-height: 20px;
+                vertical-align: middle; 
+            }
+            .blog_info .blog_meta li a:hover {
+                color: #1d3163; 
+            }
         </style>
         <!-- main css -->
         <link rel="stylesheet" href="<?=base_url('assets/css/style.css');?>">
@@ -176,52 +188,64 @@
                             
                         </div>
                     </div>
-                    
-                    <div class="col-lg-8 posts-list">
-                        <div class="single-post row">
-                            <div class="col-lg-12">
-                                <div class="feature-img">
-                                    <img class="img-fluid" src="<?=base_url('assets/img/main/news_post_5.jpg');?>" alt="">
-                                </div>									
-                            </div>
-                            <div class="col-lg-4  col-md-4">
-                                <div class="blog_info text-right">
-                                    <ul class="blog_meta list">
-                                        <li><a>Daniel Wa Mukina<i class="lnr lnr-user"></i></a></li>
-                                        <li><a>10 Juin, 2020<i class="lnr lnr-calendar-full"></i></a></li>
-                                        <li><a href="#">0 Vues<i class="lnr lnr-eye"></i></a></li>
-                                        <li><a href="#">0 Commentaires<i class="lnr lnr-bubble"></i></a></li>
-                                    </ul>
-                                    <ul class="social-links">
-                                        <li><a href="https://web.facebook.com/dimeurclub/" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a></li>
-                                        <li> <a href="https://www.linkedin.com/in/dim-business-ab9221185" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-linkedin"><i class="sr-only">LikedIn</i></span></a></li>
-                                        <li><a href="https://twitter.com/Danieldimilung1" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a></li>
-                                        <li> <a href="https://www.instagram.com/dimbusinessfamily/" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a></li>
-                                        <li> <a href="https://www.youtube.com/channel/UCCWswgrLvQ2HqJo-HnSZasQ" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-youtube"><i class="sr-only">Youtube</i></span></a></li>
-										
-                                        <!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-github"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-behance"></i></a></li> -->
-                                    </ul>
+
+                    <?php 
+
+                        if(isset($article)) 
+                        {
+                            if( ! empty($article))
+                            {
+                                $row = $article->result()[0];
+                                echo 
+                                '
+                                <div class="col-lg-8 posts-list">
+                                    <div class="single-post row">
+                                        <div class="col-lg-12">
+                                            <div class="feature-img">
+                                                <img class="img-fluid" src="'.base_url().'upload/'.$row->imageUrl.'" alt="">
+                                            </div>									
+                                        </div>
+                                        <div class="col-lg-12 blog_details">
+                                            <h2>'.$row->title.'</h2> 
+                                            <p class="excert text-justify">'.$row->description.'</p>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="blog_info text-left">
+                                                <ul class="blog_meta list">
+                                                    <div class="d-flex flex-row bd-highlight mb-3">
+                                                        <div class="p-2 bd-highlight"><li><a><i class="lnr lnr-user"></i>'.$user[0]->name.'</a></li></div>
+                                                        <div class="p-2 bd-highlight"><li><a><i class="lnr lnr-calendar-full"></i>'.$row->date.'</a></li></div>
+                                                        <div class="p-2 bd-highlight"><li><a href="#"><i class="lnr lnr-eye"></i>'.$row->view.' Vues</a></li></div>
+                                                        <!--<div class="p-2 bd-highlight"><li><a href="#"><i class="lnr lnr-bubble"></i>0 Commentaires</a></li></div>-->
+                                                    </div>
+                                                </ul>
+                                                <ul class="social-links">
+                                                <!--
+                                                    <li><a href="https://web.facebook.com/dimeurclub/" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a></li>
+                                                    <li> <a href="https://www.linkedin.com/in/dim-business-ab9221185" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-linkedin"><i class="sr-only">LikedIn</i></span></a></li>
+                                                    <li><a href="https://twitter.com/Danieldimilung1" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a></li>
+                                                    <li> <a href="https://www.instagram.com/dimbusinessfamily/" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a></li>
+                                                    <li> <a href="https://www.youtube.com/channel/UCCWswgrLvQ2HqJo-HnSZasQ" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-youtube"><i class="sr-only">Youtube</i></span></a></li>
+                                                    
+                                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-behance"></i></a></li> -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-8 col-md-8 blog_details">
-                                <h2>DIM Social - Technologie</h2> 
-                                <p class="excert text-justify">
-                                Créer un réseau des entrepreneurs pour permettre à tous nos utilisateurs de partager leurs
-                                actualités, de faire la géolocalisation de leurs services. 
-                                <br> Ce réseau social permettra aux entreprises, entrepreneurs d’accroitre
-                                sensiblement leurs zones d’action, profiter de nos outils pour mieux évaluer les revenues,
-                                consulter les experts, permettre les échanges avec les professionnels et tenir de forums
-                                économiques et autres publicités pour la plateforme.
-                                </p>
-                            </div>
-                           
-                        </div>
-                        
-                            
-                    </div>
+                                ';
+                            }
+                        }
+                    
+                    ?>
+                    
+                    
+
                 </div>
             </div>
         </section>

@@ -222,7 +222,7 @@
                                         votre article sera classé premier dans cette catégorie. Cliquez sur le bouton ci-dessous
                                         pour faire votre publication.</p>
                                         <hr>
-                                        <a href="'.site_url('user/publish_activity').'" class="btn btn-transparent text-light btn-sm btn-block" style="background-color:#1d3163;">Publier un article</a>
+                                        <a href="'.site_url('home/publish_activity').'" class="btn btn-transparent text-light btn-sm btn-block" style="background-color:#1d3163;">Publier un article</a>
                                         </div>';
                                     }
                                 }
