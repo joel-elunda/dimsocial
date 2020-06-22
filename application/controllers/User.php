@@ -123,6 +123,11 @@ class User extends CI_Controller {
             )
         );
 
+        $art_count = $this->ActivityModel->count_articles();
+        $rand = mt_rand(1, $art_count);
+        $data['article'] = $this->ActivityModel->get_where_article($rand); 
+        $data['user'] = $this->UserModel->get_user_where_id($data['article']->result()[0]->id_user);
+
         if($this->form_validation->run()) {
             $err = array();
             // print_r($this->user_login_data());
@@ -140,12 +145,12 @@ class User extends CI_Controller {
                 // $this->input->set_cookie($cookie);
                 $this->session->set_tempdata($this->cast_object_to_array($result[0]), NULL, 86500);  
                 redirect(base_url() . 'home');
-            } else {
-                $this->load->view('login');
+            } else { 
+                $this->load->view('login', $data);
             }
         } else {
-            // redirect(base_url() . 'home/login');
-            $this->load->view('login');
+            
+            $this->load->view('login', $data); 
         }
     }
 
