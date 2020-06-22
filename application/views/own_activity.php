@@ -208,10 +208,10 @@
                                         <div class="col-lg-3  col-md-3">
                                             <div class="blog_info text-right">
                                                 <div class="post_tag">
-                                                    <a class="active" href="'.site_url('activity/get_domain/').$activity[0]->domain.'">Technologie</a>  
+                                                    <a class="active">'.$activity[0]->domain.'</a>  
                                                 </div>
                                                 <ul class="blog_meta list">
-                                                    <li><a href="#">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
+                                                    <li><a href="'.site_url('user/show_user/'.$user[0]->id).'">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
                                                     <!--<li><a href="#">'.$activity[0]->experience.' mois d\'expériences<i class="lnr lnr-calendar-full"></i></a></li>
                                                      <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
                                                     <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li> -->
@@ -238,7 +238,7 @@
                                     } else {
                                         echo '
                                         <div class="alert alert-primary col-md-12" role="alert" style="background:transparent;">
-                                            L\'utilisateur n\'a encore aucune activité, <a href="'.site_url('home/publish_activity').'" class="badge badge-primary p-1">créer une activité</a>.
+                                            L\'utilisateur n\'a encore aucune activité, <a href="'.site_url('home/publish_activity').'" class="badge p-1 text-light" style="background-color:#1d3163; ">créer une activité</a>.
                                         </div>';
                                     }
                                     
@@ -253,36 +253,50 @@
                                     
                         </div>
 
-                        <div class="navigation-area">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                                    <div class="thumb">
-                                        <a href="#"><img class="img-fluid" src="<?=base_url('assets/img/main/Image-06.jpg');?>" alt=""></a>
+                        <?php  
+                            if(isset($user) && isset($activity)) 
+                            {
+                                if( ! empty($user) && ! empty($activity) )
+                                {
+                                    echo 
+                                    '
+                                    <div class="navigation-area bg-transparent">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                                                <div class="thumb">
+                                                    <a href="#"><img class="img-fluid" src="'.base_url('assets/img/main/Image-06.jpg').'" alt=""></a>
+                                                </div>
+                                                <div class="arrow">
+                                                    <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
+                                                </div>
+                                                <div class="detials">
+                                                    <p>Article précédent</p>
+                                                    <a href="#"><h4>Space The Final Frontier</h4></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                                                <div class="detials">
+                                                    <p>Article suivant</p>
+                                                    <a href="#"><h4>Telescopes 101</h4></a>
+                                                </div>
+                                                <div class="arrow">
+                                                    <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
+                                                </div>
+                                                <div class="thumb">
+                                                    <a href="#"><img class="img-fluid" src="'.base_url('assets/img/main/Image-06.jpg').'" alt=""></a>
+                                                </div>										
+                                            </div>									
+                                        </div>
                                     </div>
-                                    <div class="arrow">
-                                        <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
-                                    </div>
-                                    <div class="detials">
-                                        <p>Article précédent</p>
-                                        <a href="#"><h4>Space The Final Frontier</h4></a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                    <div class="detials">
-                                        <p>Article suivant</p>
-                                        <a href="#"><h4>Telescopes 101</h4></a>
-                                    </div>
-                                    <div class="arrow">
-                                        <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
-                                    </div>
-                                    <div class="thumb">
-                                        <a href="#"><img class="img-fluid" src="<?=base_url('assets/img/main/Image-06.jpg');?>" alt=""></a>
-                                    </div>										
-                                </div>									
-                            </div>
-                        </div>
-                        <div class="comments-area">
-                            <h4>0  Commentaires</h4>
+                                    ';
+                                }
+                            } 
+                        ?>
+                        
+
+
+                        <!-- <div class="comments-area">
+                            <h4>0  Commentaires</h4> -->
                             <!-- <div class="comment-list">
                                 <div class="single-comment justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
@@ -379,7 +393,7 @@
                                 </div>
                             </div>	   
                                                                       				 -->
-                        </div>
+                        <!-- </div> -->
 <!-- 
                         <div class="comment-form"> -->
 
@@ -408,38 +422,31 @@
                         <!-- </div> -->
                     </div>
                     <div class="col-lg-4">
-                        <div class="blog_right_sidebar "> 
+                        <div class="blog_right_sidebar bg-transparent border-0"> 
                             <aside class="single_sidebar_widget popular_post_widget">
-                            
+                                <h3 class="widget_title border-bottom text-left text-muted p-0" style="background: #FFF;"> <small>Articles récents</small> </h3>
 
-                                <div class="media post_item">
-                                    <img src="<?=base_url('assets/img/blog/popular-post/post1.jpg');?>" alt="post">
-                                    <div class="media-body">
-                                        <a href="blog-details.html"><h3>Article 1</h3></a>
-                                        <p>Lundi 15 Juin 2020, 16h26</p>
-                                    </div>
-                                </div>
-                                <div class="media post_item">
-                                    <img src="<?=base_url('assets/img/blog/popular-post/post2.jpg');?>" alt="post">
-                                    <div class="media-body">
-                                        <a href="blog-details.html"><h3>Article 2</h3></a>
-                                        <p>Lundi 15 Juin 2020, 16h26</p>
-                                    </div>
-                                </div>
-                                <div class="media post_item">
-                                    <img src="<?=base_url('assets/img/blog/popular-post/post3.jpg');?>" alt="post">
-                                    <div class="media-body">
-                                        <a href="blog-details.html"><h3>Article 3</h3></a>
-                                        <p>Lundi 15 Juin 2020, 16h26</p>
-                                    </div>
-                                </div>
-                                <div class="media post_item">
-                                    <img src="<?=base_url('assets/img/blog/popular-post/post4.jpg');?>" alt="post">
-                                    <div class="media-body">
-                                        <a href="blog-details.html"><h3>Article 4</h3></a>
-                                        <p>Lundi 15 Juin 2020, 16h26</p>
-                                    </div>
-                                </div>
+                            <?php 
+                            
+                                if(isset($articles) && ! empty($articles)) 
+                                {
+                                    $count = count($articles);
+                                    for ($i=0; $i < $count; $i++) { 
+                                        echo
+                                        '
+                                        <div class="media post_item">
+                                            <img class="img-fluid" width="100" src="'.base_url().'upload/'.$articles[$i]->imageUrl.'" alt="">
+                                            <div class="media-body">
+                                                <a href="'.site_url('activity/show_article/'.$articles[$i]->id).'"><h3>'.$articles[$i]->title.'</h3></a>
+                                                <p>Le '.$articles[$i]->date.', '.$articles[$i]->time.'</p>
+                                            </div>
+                                        </div>
+                                        ';
+                                    }
+                                    
+                                } 
+                            ?>
+ 
                                 <div class="br"></div>
                             </aside>
                             <aside class="single-sidebar-widget tag_cloud_widget">
@@ -461,10 +468,10 @@
 
                                 </ul>
                             </aside>
-                            <aside class="single_sidebar_widget ads_widget">
+                            <!-- <aside class="single_sidebar_widget ads_widget">
                                 <a href="#"><img class="img-fluid" src="<?=base_url('assets/img/blog/add.jpg');?>" alt=""></a>
                                 <div class="br"></div>
-                            </aside>
+                            </aside> -->
                             
                         </div>
                     </div>

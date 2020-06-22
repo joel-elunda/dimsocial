@@ -124,6 +124,17 @@ class ActivityModel extends CI_Model {
     }
 
     /**
+     * get_desc_articles_where_user($id)
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function get_desc_articles_where_user($id) {
+        $this->db->order_by('id', 'DESC');
+        return $this->db->where('id_user', $id)->get($this->table_article)->result();
+    }
+
+    /**
      * get_articles_where_category($ID_DOMAIN)
      *
      * @param [type] $ID_DOMAIN

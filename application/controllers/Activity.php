@@ -236,8 +236,8 @@ class Activity extends CI_Controller {
         $data['activity'] = $this->ActivityModel->get_activity_where_user($id_user);
         $data['user'] = $this->UserModel->get_user_where_id($id_user);
         
-        # Supplementaries
-        $data['activities'] = $this->ActivityModel->get_activities() ; 
+        # User articles
+        $data['articles'] = $this->ActivityModel->get_desc_articles_where_user($id_user);
 
         if( ! empty($data) || $data != NULL) 
         {  
