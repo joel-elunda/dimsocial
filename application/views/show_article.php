@@ -165,9 +165,9 @@
                                                                 foreach ($domains->result() as $domain) {
                                                                     // echo $domain->title;
                                                                     if($category[0]->CODE == $domain->CODE) {
-                                                                        echo '<a class="active" href="'.site_url('activity/show_all_articles_id/'.$domain->CODE).'">'.$category[0]->title.' </a>';
+                                                                        echo '<a class="active" href="'.site_url('activity/show_articles/'.$domain->id).'">'.$category[0]->title.' </a>';
                                                                     } else {
-                                                                        echo '<a href="'.site_url('activity/show_all_articles_id/'.$domain->CODE).'">'.$domain->title.' </a>';
+                                                                        echo '<a href="'.site_url('activity/show_articles/'.$domain->id).'">'.$domain->title.' </a>';
                                                                     }
                                                                     
                                                                 }
@@ -249,7 +249,7 @@
                                                             if($domains -> num_rows() > 0) 
                                                             {
                                                                 foreach ($domains -> result() as $row) {
-                                                                    echo '<a class="text-muted" href="'.site_url('activity/show_all_domain/' . $row->CODE).'"><li class="list-group-item list-group-item-action">'.$row->title.'</li></a>';
+                                                                    echo '<a class="text-muted" href="'.site_url('activity/show_articles/' . $row->CODE).'"><li class="list-group-item list-group-item-action">'.$row->title.'</li></a>';
                                                                 }
                                                             }
                                                         }
@@ -283,7 +283,7 @@
                                             {
                                                 foreach ($domains -> result() as $row) 
                                                 {
-                                                    echo '<li><a href="'.site_url('activity/show_article/'.$row->id).'">'.$row->title.'</a></li>';
+                                                    echo '<li><a href="'.site_url('activity/show_articles/'.$row->id).'">'.$row->title.'</a></li>';
                                                 }
                                             }
                                         } 

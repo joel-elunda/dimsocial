@@ -167,11 +167,11 @@
                                                                     foreach ($domains -> result() as $domain) 
                                                                     {
                                                                         if($row->id_category == $domain->id) {
-                                                                            echo '<a class="active" href="'.site_url('activity/show_all_domain/'.$domain->CODE) .'">'.$domain->title.'</a>';
+                                                                            echo '<a class="active" href="'.site_url('activity/show_articles/'.$domain->CODE) .'">'.$domain->title.'</a>';
                                                                         } else {
                                                                             echo 
                                                                             '
-                                                                                <a href="'.site_url('activity/show_all_domain/'.$domain->CODE) .'">'.$domain->title.'</a>
+                                                                                <a href="'.site_url('activity/show_articles/'.$domain->CODE) .'">'.$domain->title.'</a>
                                                                             ';                                                                       
                                                                         } 
                                                                     }

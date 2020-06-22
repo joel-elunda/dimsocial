@@ -127,7 +127,7 @@
         </header>
  
         <!--================Testimonials Area =================-->
-        <section class="testimonials_area p_120 p-5" style="background-color:#FFF;">
+        <section class="testimonials_area p_120 pt-0" style="background-color:#FFF;">
         	<div class="container">
         		<div class="main_title">
         			<!-- <h2>Toutes les catégories</h2> -->
@@ -171,7 +171,7 @@
 
  
         <!--================Blog Area =================-->
-        <section class="blog_area">
+        <section class="blog_area pt-0">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 ">
@@ -207,7 +207,7 @@
                                                                     foreach ($domains -> result() as $domain) 
                                                                     {
                                                                         if($row->id_category == $domain->id) {
-                                                                            echo '<a class="active" href="'.site_url('activity/show_all_domain/'.$domain->CODE) .'"><strong>'.$domain->title.'</strong> </a>';
+                                                                            echo '<a class="active" href="'.site_url('activity/show_articles/'.$domain->CODE) .'"><strong>'.$domain->title.'</strong> </a>';
                                                                         } else {
                                                                             echo 
                                                                             '
@@ -289,7 +289,7 @@
                                                                 if($domains -> num_rows() > 0) 
                                                                 {
                                                                     foreach ($domains -> result() as $row) {
-                                                                        echo '<a class="text-muted" href="'.site_url('activity/show_all_domain/' . $row->CODE).'"><li class="list-group-item list-group-item-action">'.$row->title.'</li></a>';
+                                                                        echo '<a class="text-muted" href="'.site_url('activity/show_articles/' . $row->CODE).'"><li class="list-group-item list-group-item-action">'.$row->title.'</li></a>';
                                                                     }
                                                                 }
                                                             }

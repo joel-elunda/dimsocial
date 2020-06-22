@@ -142,7 +142,7 @@
         
       
         <!--================Blog Area =================-->
-        <section class="blog_area single-post-area p_120">
+        <section class="blog_area single-post-area p_120 pt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">

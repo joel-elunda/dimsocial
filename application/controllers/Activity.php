@@ -188,19 +188,19 @@ class Activity extends CI_Controller {
      * @return void
      */
     function show_article() {
-        $id = $this->uri->segment(3);
+        $id = (int) $this->uri->segment(3);
         $data['article'] = $this->ActivityModel->get_where_desc_articles($id);
         $data['domains'] = $this->ActivityModel->get_domains();
-        if(empty($data) || $data != NULL) {
+
+        if( ! empty($data) || $data != NULL) {
             $id_user = $data['article']->result()[0]->id_user;
             $id_category = $data['article']->result()[0]->id_category;
             $data['user'] = $this->UserModel->get_user_where_id($id_user);
             $data['category'] = $this->ActivityModel->get_where_domain($id_category); 
-            $data['comments'] = $this->ActivityModel->get_comments_article($data['article']->result()[0]->id);
-            
+            // $data['comments'] = $this->ActivityModel->get_comments_article($data['article']->result()[0]->id);
+
             # Increment articles views
             $this->ActivityModel->increment_views((int) $data['article']->result()[0]->id);
-
             $this->load->view('show_article', $data);
         } else {
             echo 'Article ID not found.';
@@ -365,22 +365,7 @@ class Activity extends CI_Controller {
         }
     }
 
-    /**
-     * show_all_domains() 
-     *
-     * @return void
-     */
-    function show_all_domains() {
-        $domain = $this->uri->segment(3);
-        $domains = $this->ActivityModel->get_all_domain_where_id($domain);
-        if($domains != NULL || ! empty($domains)) {
-            echo 'TRUE';
-        } else {
-            echo 'FALSE';
-        }
-    }
 
- 
     /**
      * get_activity($id)
      *
