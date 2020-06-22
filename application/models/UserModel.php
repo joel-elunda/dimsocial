@@ -3,20 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class UserModel extends CI_Model {
 
-    /**
-     * IDEntrepreneur,
-     * name,
-     * email,
-     * address,
-     * phone,
-     * gender,
-     * bio,
-     * site,
-     * photoUrl,
-     * password,
-     * state,
-     */
-
      
     /**
      * $table_user
@@ -240,15 +226,6 @@ class UserModel extends CI_Model {
     | COMMENTS QUERIES
     | -------------------------------------------------------------------
     */
-
-
-    /**
-     * IDComment
-     * IDUser
-     * content
-     * date
-     * state
-     */
 
 
      /**

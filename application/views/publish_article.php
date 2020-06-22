@@ -89,13 +89,14 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="'.site_url('user/show_user/'.$this->session->id).'"><i class="fa fa-user-circle-o"></i> Voir mon compte</a> 
+                                    <a class="dropdown-item" href="'.site_url('activity/user_articles/'.$this->session->id).'"><i class="fa fa-user-newspaper-o"></i> Mes articles</a> 
                                     <a class="dropdown-item" href="'.site_url('activity/user_activity/'.$this->session->id).'"><i class="fa fa-user-newspaper-o"></i> Mon activité</a> 
                                 <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-danger" href="'.site_url('user/logout').'"><i class="fa fa-power-off"></i>  Se déconnecter</a>
                                 </div>
                             </li> 
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="'.site_url('home/publish_article').'"><i class="fa fa-post"></i>Publier un article</a>
+                                <a class="nav-link text-light" href="'.site_url('home/publish_article').'"><i class="fa fa-book"></i> Publier un article</a>
                             </li>
                             ';
                         } else {
@@ -134,6 +135,73 @@
 
             </header>
   
+            
+            <!-- *** Article forms *** -->
+
+            <section class="contact_area p_120 mt-0 pt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-11">
+                        
+                        <form  method="POST" action="<?=site_url('activity/publish_article')?>" class="row contact_form" id="contact_form" novalidate="novalidate">
+                            
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <h4 class="text-muted">Partager un article</h4>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="<?=set_value('title');?>" id="title" name="title" placeholder="Nom de l'article">
+                                    <small class="text-danger"><?= form_error('title','<em>','</em>') ?></small>
+                                </div>
+                                <div class="form-group"> 
+                                    <select name="domain" value="<?=set_value('domain');?>" class="form-group form-control"  id="domain">
+                                        <option value="none">Domaine concerné</option>
+                                        <?php
+                                            if(isset($domains)) 
+                                            {
+                                                if($domains -> num_rows() > 0) 
+                                                {
+                                                    foreach ($domains -> result() as $row) 
+                                                    {
+                                                        echo '<option value="'.$row->id.'">'.$row->title.'</option>';
+                                                    }
+                                                }
+                                            } 
+                                        ?> 
+
+                                    </select>
+                                    <small class="text-danger"><?= form_error('domain','<em>','</em>') ?></small>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" value="<?=set_value('description');?>" name="description" id="description" rows="3" placeholder="Description de votre article"></textarea>
+                                    <small class="text-danger"><?= form_error('description','<em>','</em>') ?></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="imageUrl"> <small class="text-center">Sélectionner une image</small> </label>
+                                    <input type="file" value="<?=set_value('imageUrl');?>" class="form-control-sm" name="imageUrl" id="imageUrl" >
+                                </div>
+                                <div class="form-group">
+                                    <div id="uploaded_image">
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-block border-0" style="background: #1d3163;">Publier</button>
+                                </div>
+                            </div> 
+                            
+                            
+ 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <!-- *** Article forms *** -->
+
+
 
     </body>
 </html>

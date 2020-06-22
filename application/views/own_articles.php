@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="<?=base_url('assets/img/main/logodim.png');?>" type="image/png">
-        <title>DIM Social - Votre activité</title>
+        <title>DIM Social - Vos articles</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="<?=base_url('assets/css/bootstrap.css');?>">
         <link rel="stylesheet" href="<?=base_url('assets/vendors/linericon/style.css');?>">
@@ -197,48 +197,50 @@
 
                             <?php 
 
-                                if(isset($user) && isset($activity)) 
+                                if(isset($user) && isset($user_articles)) 
                                 {
-                                    if( ! empty($user) && ! empty($activity) )
+                                    if( ! empty($user) && ! empty($user_articles) )
                                     {
-                                        echo 
-                                        '
-                                        <div class="col-lg-12">
-                                            <div class="feature-img">
-                                            <img class="img-fluid" src="'.base_url().'upload/'.$activity[0]->imageUrl.'" alt="">
-                                            </div>									
-                                        </div>
+                                        $count = count($user_articles);
+                                        print_r($user_articles);
+                                        // echo 
+                                        // '
+                                        // <div class="col-lg-12">
+                                        //     <div class="feature-img">
+                                        //     <img class="img-fluid" src="'.base_url().'upload/'.$activity[0]->imageUrl.'" alt="">
+                                        //     </div>									
+                                        // </div>
     
-                                        <div class="col-lg-3  col-md-3">
-                                            <div class="blog_info text-right">
-                                                <div class="post_tag">
-                                                    <a class="active">'.$activity[0]->domain.'</a>  
-                                                </div>
-                                                <ul class="blog_meta list">
-                                                    <li><a href="'.site_url('user/show_user/'.$user[0]->id).'">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
-                                                    <!--<li><a href="#">'.$activity[0]->experience.' mois d\'expériences<i class="lnr lnr-calendar-full"></i></a></li>
-                                                     <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
-                                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li> -->
-                                                </ul>
-                                                <!--
-                                                <ul class="social-links">
-                                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-github"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                                </ul>
-                                                -->
-                                            </div>
-                                        </div>
+                                        // <div class="col-lg-3  col-md-3">
+                                        //     <div class="blog_info text-right">
+                                        //         <div class="post_tag">
+                                        //             <a class="active">'.$activity[0]->domain.'</a>  
+                                        //         </div>
+                                        //         <ul class="blog_meta list">
+                                        //             <li><a href="'.site_url('user/show_user/'.$user[0]->id).'">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
+                                        //             <!--<li><a href="#">'.$activity[0]->experience.' mois d\'expériences<i class="lnr lnr-calendar-full"></i></a></li>
+                                        //              <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
+                                        //             <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li> -->
+                                        //         </ul>
+                                        //         <!--
+                                        //         <ul class="social-links">
+                                        //             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        //             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        //             <li><a href="#"><i class="fa fa-github"></i></a></li>
+                                        //             <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                        //         </ul>
+                                        //         -->
+                                        //     </div>
+                                        // </div>
                                         
                                
-                                        <div class="col-lg-9 col-md-9 blog_details"> 
-                                            <h2>'.$activity[0]->name.'</h2>
-                                            <p class="excert">
-                                            '.$activity[0]->description.'
-                                            </p>
-                                        </div> 
-                                        ';
+                                        // <div class="col-lg-9 col-md-9 blog_details"> 
+                                        //     <h2>'.$activity[0]->name.'</h2>
+                                        //     <p class="excert">
+                                        //     '.$activity[0]->description.'
+                                        //     </p>
+                                        // </div> 
+                                        // ';
                                     } else {
                                         echo '
                                         <div class="alert alert-success bg-transparent border-0" role="alert">

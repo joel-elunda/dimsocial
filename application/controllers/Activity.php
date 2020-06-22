@@ -98,11 +98,12 @@ class Activity extends CI_Controller {
     private function article_input_data() : array {
         return array
         (
-            'name' => $this->input->post('name', TRUE),
-            'domain' => $this->input->post('domain', TRUE),
+            'title' => $this->input->post('title', TRUE),
+            'id_category' => $this->input->post('domain', TRUE),
             'description' => $this->input->post('description', TRUE),
             'imageUrl' => $this->input->post('imageUrl', TRUE),
             'date' => date('Y-m-d'),
+            'time' => date('H:m:s'),
             'id_user' => $this->session->id
         );
     }
@@ -120,6 +121,7 @@ class Activity extends CI_Controller {
         if(isset($this->session->id) || isset($this->session->id)) {
             $data['user'] = $this->UserModel->get_user_where_id($this->session->id);
             $data['activity'] = $this->ActivityModel->get_where_activity($this->session->id);
+            $data['user_articles'] = $this->ActivityModel->get_desc_articles_where_user($this->session->id);
         }
 
         $data['domains'] = $this->ActivityModel->get_domains();
@@ -162,20 +164,23 @@ class Activity extends CI_Controller {
      */
     function publish_article() {
 
-        $this->form_validation->set_rules('name', 'name', 'required|trim');
+        $this->form_validation->set_rules('title', 'title', 'required|trim');
         $this->form_validation->set_rules('domain', 'domaine', 'required|trim');
         $this->form_validation->set_rules('description', 'description', 'required|trim');
         $this->form_validation->set_rules('imageUrl', 'imageUrl', 'required|trim');
 
         if($this->form_validation->run()) { 
-            $is_done = $this->ActivityModel->add_articles($this->article_input_data());
+            $is_done = $this->ActivityModel->add_article($this->article_input_data());
             if($is_done == TRUE) {
+
                 $this->load->view('own_articles', $this->data());
             } else {
                 echo 'Error on Database manipulations.';
             }
         } else {
+            $this->load->view('publish_article');
             echo 'Error on form validation.';
+
         }
     
     }

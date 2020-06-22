@@ -3,20 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ActivityModel extends CI_Model {
 
-    /**
-     * ACTIVITY
-     * =======
-     * 
-     * IDActivity,
-     * IDEntrepreneur,
-     * title,
-     * description,
-     * date,
-     * view,
-     * like,
-     * comment
-     */
-
      
     /**
      * $table_article
