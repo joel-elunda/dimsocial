@@ -237,15 +237,28 @@
                                         ';
                                     } else {
                                         echo '
-                                        <div class="alert alert-primary col-md-12" role="alert" style="background:transparent;">
-                                            L\'utilisateur n\'a encore aucune activité, <a href="'.site_url('home/publish_activity').'" class="badge p-1 text-light" style="background-color:#1d3163; ">créer une activité</a>.
+                                        <div class="alert alert-success bg-transparent border-0" role="alert">
+                                        <h4 class="alert-heading">Aucun post pour cette catégorie</h4>
+                                        <p>Connectez-vous et soyez les premiers à publier un article pour cette catégorie. Après avoir publier 
+                                        votre article sera classé premier dans cette catégorie. Cliquez sur le bouton ci-dessous
+                                        pour faire votre publication.</p>
+                                        <hr>
+                                        <a href="'.site_url('home/publish_activity').'" class="btn btn-transparent text-light btn-sm btn-block" style="background-color:#1d3163;">Publier un article</a>
                                         </div>';
                                     }
                                     
                                 }
                                 else 
                                 {
-                                    echo 'Activity or user not found';
+                                    echo '
+                                    <div class="alert alert-success bg-transparent border-0" role="alert">
+                                    <h4 class="alert-heading">Aucun post pour cette catégorie</h4>
+                                    <p>Connectez-vous et soyez les premiers à publier un article pour cette catégorie. Après avoir publier 
+                                    votre article sera classé premier dans cette catégorie. Cliquez sur le bouton ci-dessous
+                                    pour faire votre publication.</p>
+                                    <hr>
+                                    <a href="'.site_url('home/publish_activity').'" class="btn btn-transparent text-light btn-sm btn-block" style="background-color:#1d3163;">Publier un article</a>
+                                    </div>';
                                 }
                             
                             ?>
@@ -254,43 +267,49 @@
                         </div>
 
                         <?php  
-                            if(isset($user) && isset($activity)) 
-                            {
-                                if( ! empty($user) && ! empty($activity) )
-                                {
-                                    echo 
-                                    '
-                                    <div class="navigation-area bg-transparent">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                                                <div class="thumb">
-                                                    <a href="#"><img class="img-fluid" src="'.base_url('assets/img/main/Image-06.jpg').'" alt=""></a>
-                                                </div>
-                                                <div class="arrow">
-                                                    <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
-                                                </div>
-                                                <div class="detials">
-                                                    <p>Article précédent</p>
-                                                    <a href="#"><h4>Space The Final Frontier</h4></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                                <div class="detials">
-                                                    <p>Article suivant</p>
-                                                    <a href="#"><h4>Telescopes 101</h4></a>
-                                                </div>
-                                                <div class="arrow">
-                                                    <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
-                                                </div>
-                                                <div class="thumb">
-                                                    <a href="#"><img class="img-fluid" src="'.base_url('assets/img/main/Image-06.jpg').'" alt=""></a>
-                                                </div>										
-                                            </div>									
-                                        </div>
-                                    </div>
-                                    ';
-                                }
-                            } 
+
+                            function do_activity_exist($item) {
+                                if( ! empty($item)) return $item;
+                            }
+
+                            // if(isset($user) && isset($activity)) 
+                            // {
+                            //     if( ! empty($user) && ! empty($activity) )
+                            //     {
+                            //         $i = $user[0]->id;
+                            //         echo 
+                            //         '
+                            //         <div class="navigation-area bg-transparent">
+                            //             <div class="row">
+                            //                 <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                            //                     <div class="thumb">
+                            //                         <a href="#"><img class="img-fluid" src="'.base_url('assets/img/main/Image-06.jpg').'" alt=""></a>
+                            //                     </div>
+                            //                     <div class="arrow">
+                            //                         <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
+                            //                     </div>
+                            //                     <div class="detials">
+                            //                         <p>'.$activities[++$i]->name.'</p>
+                            //                         <a href="'.site_url('activity/show_article/'.$activities[++$i]->id).'"><h4>'.$activities[--$i]->name.', '.$activities[++$i]->domain.'</h4></a>
+                            //                     </div>
+                            //                 </div>
+                            //                 <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                            //                     <div class="detials">
+                            //                         <p>'.$activities[0]->name.'</p>
+                            //                         <a href="'.site_url('activity/show_article/'.$activities[0]->id).'"><h4>'.$activities[0]->name.', '.$activities[0]->domain.'</h4></a>
+                            //                     </div>
+                            //                     <div class="arrow">
+                            //                         <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
+                            //                     </div>
+                            //                     <div class="thumb">
+                            //                         <a href="#"><img class="img-fluid" src="'.base_url('assets/img/main/Image-06.jpg').'" alt=""></a>
+                            //                     </div>										
+                            //                 </div>									
+                            //             </div>
+                            //         </div>
+                            //         ';
+                            //     }
+                            // } 
                         ?>
                         
 
@@ -444,10 +463,12 @@
                                         ';
                                     }
                                     
-                                } 
+                                } else {
+                                    echo '<p class="text-muted"> <small> Aucun article récent </small></p>';
+                                }
                             ?>
  
-                                <div class="br"></div>
+                                <!-- <div class="br"></div> -->
                             </aside>
                             <aside class="single-sidebar-widget tag_cloud_widget">
                                

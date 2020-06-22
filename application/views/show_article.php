@@ -89,6 +89,9 @@
                         <a class="dropdown-item text-danger" href="'.site_url('user/logout').'"><i class="fa fa-power-off"></i>  Se déconnecter</a>
                     </div>
                 </li> 
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="'.site_url('home/publish_article').'"><i class="fa fa-post"></i>Publier un article</a>
+                </li>
                 ';
             } else {
                 echo '
@@ -142,69 +145,83 @@
                            
                             <?php 
 
-                                if(isset($article)) {
-                                    if($article -> num_rows() > 0) {
-                                        foreach ($article -> result() as $row) {
+                                if(isset($article) ) {
+                                    if( ! empty( $article->result() ) ){
 
-                                            if(isset($user)) {
+                                    
+                                        if($article -> num_rows() > 0) {
+                                            foreach ($article -> result() as $row) {
+
+                                                if(isset($user)) {
 
 
-                                                echo 
-                                                '
-                                                <article class="row blog_item">
-                                                <div class="col-md-3">
-                                                    <div class="blog_info text-right">
-                                                            <div class="post_tag">
+                                                    echo 
+                                                    '
+                                                    <article class="row blog_item">
+                                                    <div class="col-md-3">
+                                                        <div class="blog_info text-right">
+                                                                <div class="post_tag">
 
-                                                            ';
+                                                                ';
 
-                                                            ?>
-                                                            <?php
-                                                            if(isset($category) && isset($domains)) 
-                                                            {
-                                                                foreach ($domains->result() as $domain) {
-                                                                    // echo $domain->title;
-                                                                    if($category[0]->CODE == $domain->CODE) {
-                                                                        echo '<a class="active" href="'.site_url('activity/show_articles/'.$domain->id).'">'.$category[0]->title.' </a>';
-                                                                    } else {
-                                                                        echo '<a href="'.site_url('activity/show_articles/'.$domain->id).'">'.$domain->title.' </a>';
+                                                                ?>
+                                                                <?php
+                                                                if(isset($category) && isset($domains)) 
+                                                                {
+                                                                    foreach ($domains->result() as $domain) {
+                                                                        // echo $domain->title;
+                                                                        if($category[0]->CODE == $domain->CODE) {
+                                                                            echo '<a class="active" href="'.site_url('activity/show_articles/'.$domain->id).'">'.$category[0]->title.' </a>';
+                                                                        } else {
+                                                                            echo '<a href="'.site_url('activity/show_articles/'.$domain->id).'">'.$domain->title.' </a>';
+                                                                        }
+                                                                        
                                                                     }
-                                                                    
                                                                 }
-                                                            }
-                                                            ?>
- 
-                                                            
-                                                            <?php
-                                                                echo '
-                                                            </div>
-                                                            <ul class="blog_meta list">
-                                                                <li><a href="'.site_url('user/show_user/'.$user[0]->id).'">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
-                                                                <li><a>'.$row->date.'<i class="lnr lnr-calendar-full"></i></a></li>
-                                                                <li><a> '.$row->view.' Vues<i class="lnr lnr-eye"></i></a></li>
-                                                                <!-- <li><a> 0 Commentaires<i class="lnr lnr-bubble"></i></a></li> -->
-                                                            </ul>
+                                                                ?>
+    
+                                                                
+                                                                <?php
+                                                                    echo '
+                                                                    </div>
+                                                                    <ul class="blog_meta list">
+                                                                        <li><a href="'.site_url('user/show_user/'.$user[0]->id).'">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
+                                                                        <li><a>'.$row->date.'<i class="lnr lnr-calendar-full"></i></a></li>
+                                                                        <li><a> '.$row->view.' Vues<i class="lnr lnr-eye"></i></a></li>
+                                                                        <!-- <li><a> 0 Commentaires<i class="lnr lnr-bubble"></i></a></li> -->
+                                                                    </ul>
+                                                                </div>
                                                         </div>
-                                                </div>
-                                                    <div class="col-md-9">
-                                                        <div class="blog_post">
-                                                            <img src="'.base_url().'upload/'.$row->imageUrl.'" alt="">
-                                                            <div class="blog_details">
-                                                                <a><h2>'.$row->title.'</h2></a>
-                                                                <p>'.$row->description.'</p>
+                                                        <div class="col-md-9">
+                                                            <div class="blog_post">
+                                                                <img src="'.base_url().'upload/'.$row->imageUrl.'" alt="">
+                                                                <div class="blog_details">
+                                                                    <a><h2>'.$row->title.'</h2></a>
+                                                                    <p>'.$row->description.'</p>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                
-                                                
-                                                </article>
-                                                ';
+                                                    
+                                                    
+                                                    </article>
+                                                    ';
+                                                }
                                             }
                                         }
+                                            
+                                    } else {
+                                        echo '
+                                        <div class="alert alert-success bg-transparent border-0" role="alert">
+                                        <h4 class="alert-heading">Aucun post pour cette catégorie</h4>
+                                        <p>Connectez-vous et soyez les premiers à publier un article pour cette catégorie. Après avoir publier 
+                                        votre article sera classé premier dans cette catégorie. Cliquez sur le bouton ci-dessous
+                                        pour faire votre publication.</p>
+                                        <hr>
+                                        <a href="'.site_url('home/publish_activity').'" class="btn btn-transparent text-light btn-sm btn-block" style="background-color:#1d3163;">Publier un article</a>
+                                        </div>';
+                                    } 
                                         
-                                    }
-                                }
-                            
+                                } 
                             ?>
  
                         </div>

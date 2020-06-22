@@ -95,6 +95,9 @@
                         <a class="dropdown-item text-danger" href="'.site_url('user/logout').'"><i class="fa fa-power-off"></i>  Se déconnecter</a>
                     </div>
                 </li> 
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="'.site_url('home/publish_article').'"><i class="fa fa-post"></i>Publier un article</a>
+                </li>
                 ';
             } else {
                 echo '

@@ -187,20 +187,25 @@ class Activity extends CI_Controller {
      *
      * @return void
      */
-    function show_article() {
+    function show_article() 
+    {
         $id = (int) $this->uri->segment(3);
         $data['article'] = $this->ActivityModel->get_where_desc_articles($id);
         $data['domains'] = $this->ActivityModel->get_domains();
 
-        if( ! empty($data) || $data != NULL) {
-            $id_user = $data['article']->result()[0]->id_user;
-            $id_category = $data['article']->result()[0]->id_category;
-            $data['user'] = $this->UserModel->get_user_where_id($id_user);
-            $data['category'] = $this->ActivityModel->get_where_domain($id_category); 
+        if( ! empty($data) || $data != NULL) 
+        {
+            if( ! empty($data['article']->result()) ) 
+            {
+                $id_user = $data['article']->result()[0]->id_user;
+                $id_category = $data['article']->result()[0]->id_category;
+                $data['user'] = $this->UserModel->get_user_where_id($id_user);
+                $data['category'] = $this->ActivityModel->get_where_domain($id_category); 
+                $this->ActivityModel->increment_views((int) $data['article']->result()[0]->id);
+            }
+    
             // $data['comments'] = $this->ActivityModel->get_comments_article($data['article']->result()[0]->id);
-
             # Increment articles views
-            $this->ActivityModel->increment_views((int) $data['article']->result()[0]->id);
             $this->load->view('show_article', $data);
         } else {
             echo 'Article ID not found.';
@@ -237,6 +242,7 @@ class Activity extends CI_Controller {
         $data['user'] = $this->UserModel->get_user_where_id($id_user);
         
         # User articles
+        $data['activities'] = $this->ActivityModel->get_activities();
         $data['articles'] = $this->ActivityModel->get_desc_articles_where_user($id_user);
 
         if( ! empty($data) || $data != NULL) 
