@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="form-group"> 
                                     <select name="domain" value="<?=set_value('domain');?>" class="form-group form-control"  id="domain">
-                                        <option value="none">Domaine concerné</option>
+                                        <option>Domaine concerné</option>
                                         <?php
                                             if(isset($domains)) 
                                             {

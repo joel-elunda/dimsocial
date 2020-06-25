@@ -144,7 +144,7 @@ class ActivityModel extends CI_Model {
     /**
      * add_article($data)
      *
-     * @param [array] $data
+     * @param array $data
      * @return boolean
      */
     public function add_article($data) : bool { 
@@ -154,13 +154,35 @@ class ActivityModel extends CI_Model {
             return $this->done = FALSE;    
         }  
 
-        if( ! in_array($data['title'], $this->cast_object_to_array($arr[0]))) {
+        if( ! in_array($data['title'], $this->articles_titles($arr))) {        
             $this->db->insert($this->table_article, $data);
             $this->done = TRUE;
         } else {
             $this->done = FALSE;
         }
         return $this->done;
+    }
+
+    /**
+     * articles_titles()
+     *
+     * @return array
+     */
+    public function articles_titles($arr) : array 
+    {
+        $arr = $this->get_articles();
+        $titles = array();
+
+        if(empty($arr)) {
+            return $titles;
+        }  
+
+        if( ! empty($arr) || $arr != NULL) {
+            foreach ($arr as $key => $value) {
+                array_push($titles, $value->title);
+            }
+            return $titles;
+        }
     }
 
 

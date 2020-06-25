@@ -168,6 +168,11 @@
                                         return $item;
                                     }
                                 }
+
+                                function is_type(string $item) : string {
+                                    if($item == 'PERSONAL') return 'Freelancer';
+                                    else return 'Entreprise';
+                                }
                             
                                 if(isset($user) && isset($this->session->id)) {
                                     echo
@@ -189,7 +194,7 @@
                                                 <li><a><i class="fa fa-map-marker"></i>'.$user[0]->address.'</a></li>
                                                 <li><a><i class="lnr lnr-phone"></i>'.$user[0]->phone.'</a></li>
                                                 <li><a><i class="fa fa-tag"></i>'. if_isset($user[0]->site) .'</a></li>
-                                                <li><a><i class="fa fa-bank"></i>'. if_isset($user[0]->type) .'</a></li>
+                                                <li><a><i class="fa fa-bank"></i>'. is_type(if_isset($user[0]->type))  .'</a></li>
                                                 <li><a class="excert text-right"><i class="fa fa-book"></i>'. if_isset($user[0]->bio) .'</a></li>
                                             </ul>
                                             <ul class="social-links">
@@ -229,7 +234,7 @@
                                                 <li><a><i class="fa fa-map-marker"></i>'.$user[0]->address.'</a></li>
                                                 <li><a><i class="lnr lnr-phone"></i>'.$user[0]->phone.'</a></li>
                                                 <li><a><i class="fa fa-tag"></i>'. if_isset($user[0]->site) .'</a></li>
-                                                <li><a><i class="fa fa-bank"></i>'. if_isset($user[0]->type) .'</a></li>
+                                                <li><a><i class="fa fa-bank"></i>'. is_type(if_isset($user[0]->type)) .'</a></li>
                                                 <li><a class="excert text-right"><i class="fa fa-book"></i>'. if_isset($user[0]->bio) .'</a></li>
                                             </ul>
                                             <ul class="social-links">
@@ -258,6 +263,174 @@
                     </div>
 
 
+                    <?php 
+                    
+                        if(isset($user) && isset($this->session->id))
+                        {
+                            echo
+                            '
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalCenterTitle">Supprimer mon compte</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- *** USER INFO *** -->
+                                    <div class="card mb-3" style="max-width: 540px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                <img src="'.base_url().'upload/'.$user[0]->imageUrl.'" class="figure-img img-fluid rounded" alt="...">
+                                            </div>
+                                            <div class="col-md-8 border-0">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">'.$user[0]->name.'</h5> 
+                                                    <!--
+                                                    <ul class="list-group list-sm">
+                                                        <li class="list-group-item"><small class="text-muted">'.$user[0]->bio.'</small></li> 
+                                                        <li class="list-group-item"><small class="text-muted">'.$user[0]->email.'</small></li> 
+                                                        <li class="list-group-item"><small class="text-muted">'.$user[0]->site.'</small> </li> 
+                                                        <li class="list-group-item"><small class="text-muted">'.$user[0]->address.'</small></li> 
+                                                    </ul> 
+                                                    --> 
+                                                    <p class="card-text"><small class="text-muted">Votre compte sera supprimé</small></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- *** USER INFO *** -->
+                                </div>
+                                <div class="modal-footer"> 
+                                    <button type="button" class="btn btn-block btn-sm btn-danger">Supprimer</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            ';
+                        }
+                    
+                    ?>
+
+
+
+
+                    <!-- *** USER MODAL *** -->
+                    <!-- Button trigger modal --> 
+
+                    <!-- Modal -->
+                    <?php 
+
+                        if(isset($user) && isset($this->session->id))
+                        {
+                            echo '
+
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">'.$user[0]->name.'</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- *** FORM USER *** -->
+                            <form class="row contact_form" action="'.site_url('user/update_user').'" method="post"  id="contact_form" novalidate="novalidate">
+                        <?php echo validation_errors(); ?>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h4 class="text-muted">Changer mes informations</h4>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-sm" id="name" name="name" value="'.set_value('name').'" placeholder="'.$user[0]->name.'" required>
+                                    <small class="text-danger">'.form_error('name','<em>','</em>').'</small>
+                                </div> 
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-sm" id="email" name="email" value="'.set_value('email').'" placeholder="'.$user[0]->email.'" required>
+                                    <small class="text-danger">'.form_error('email','<em>','</em>').'</small>
+                                </div> 
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-sm" id="address" name="address" value="'.set_value('addrses').'" placeholder="'.$user[0]->address.'">
+                                    <small class="text-danger">'.form_error('address','<em>','</em>').'</small>
+                                </div> 
+                                <div class="form-group">
+                                    <input type="tel" class="form-control form-control-sm" id="phone" name="phone" value="'.set_value('phone').'" placeholder="'.$user[0]->phone.'" required>
+                                    <small class="text-danger">'.form_error('phone','<em>','</em>').'</small>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-sm" id="site" name="site" value="'.set_value('site').'" placeholder="'.$user[0]->site.' (facultatif)">
+                                    <small class="text-danger">'.form_error('site','<em>','</em>').'</small>
+                                </div>  
+
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="type" id="individuel" value="PERSONAL">
+                                    <label class="form-check-label" for="individuel"> <small>Compte Individuel</small> </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="type" id="company" value="COMPANY">
+                                    <label class="form-check-label" for="company"> <small>Compte Entreprise</small> </label>
+                                </div> 
+  
+                                <div class="form-group">
+                                    <textarea class="form-control" name="bio" id="bio" value="'.set_value('bio').'" rows="1" placeholder="Votre bio">'.$user[0]->bio.'</textarea>
+                                    <small class="text-danger">'.form_error('bio','<em>','</em>').'</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="imageUrl"> <small class="text-center">Votre photo</small> </label>
+                                    <input type="file" class="form-control-sm" value="'.set_value('imageUrl').'" id="imageUrl" name="imageUrl"><br>
+                                    <div class="form-group">
+                                        <div id="uploaded_image">
+
+                                        </div>
+                                    </div> 
+                                </div>
+
+
+
+                                
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-sm" value="'.set_value('password').'" id="password" name="password" placeholder="Mot de passe *" required>
+                                    <small class="text-muted text-left"> <i>Assurez-vous qu\'il s\'agit d\'au moins 15 caractères OU d\'au moins 8 caractères.</i> </small>
+                                    <small class="text-danger">'.form_error('password','<em>','</em>').'</small>
+                                </div> 
+                                
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-sm" value="'.set_value('confirm').'" id="confirm" name="confirm" placeholder="Confimer votre mot de passe *" required>
+                                    <small class="text-danger">'.form_error('confirm','<em>','</em>').'</small>
+                                </div> 
+
+                                <br>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-sm btn-primary border-0 rounded-0  btn-block" style="background-color: #1d3163;">Enregistrer</button>
+                                <!-- <button type="button" class="btn btn-sm btn-secondary border-0 rounded-0  btn-block" data-dismiss="modal">Fermer</button> -->
+                                    <!-- <button type="submit" value="submit" class="btn btn-sm btn-block text-light border-0 rounded-0" style="background-color: #1d3163;">S\'inscrire</button> -->
+                                </div>
+                            </div> 
+            
+ 
+
+                        </form>
+                            <!-- *** FORM USER *** -->
+                        </div>
+                        
+                        </div>
+                    </div>
+                    </div>
+                    <!-- *** USER MODAL *** -->
+                            
+                            ';
+                        }
+                    
+                    ?>
+                    
+
+
 
                     <?php
 
@@ -279,18 +452,11 @@
                                 </ul> -->
                                 <div class="blog_info m-0 p-0 text-left">
                                     <ul class="blog_meta list">
-                                        <!-- <li><a><i class="lnr lnr-user"></i> Daniel Wa Mukina</a></li>
-                                        <li><a>10 Juin, 2020<i class="lnr lnr-calendar-full"></i></a></li>
-                                        <li><a>danielmukina@gmail.com<i class="lnr lnr-calendar-full"></i></a></li>
-                                        <li><a>Femmes Katangaises 505, Haut-Katanga RDC<i class="lnr lnr-calendar-full"></i></a></li>
-                                        <li><a>555 - 888 - 999<i class="lnr lnr-calendar-full"></i></a></li> -->
 
-                                        <li><a href="'.site_url('user/update_profile/'.$user[0]->id).'"><i class="fa fa-info"></i><small> Modifier mes informations</small></a></li>
-                                        <li><a href="'.site_url('user/update_imageUrl/'.$user[0]->id).'"><i class="fa fa-photo"></i><small> Changer la photo</small></a></li>
-                                        <li><a href="'.site_url('user/update_password/'.$user[0]->id).'"><i class="fa fa-key"></i><small> Mot de passe</small></a></li>
+                                        <li><a href="'.site_url('user/update_profile/'.$user[0]->id).'" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-info"></i><small> Modifier mes informations</small></a></li>
                                         <hr>
                                         <li><a href="'.site_url('home/politic/'.$user[0]->id).'"><i class="fa fa-book"></i><small> Politiques de confidentialités</small></a></li>
-                                        <li><a href=""><i class="fa fa-user"></i><small> Supprimer mon compte</small></a></li>
+                                        <li><a href="" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-user"></i><small> Supprimer mon compte</small></a></li>
                                         <!--'.site_url('user/delete_account/'.$user[0]->id).'-->
                                     </ul>
                                 </div>
@@ -344,3 +510,30 @@
         <script src="<?=base_url('assets/js/theme.js');?>"></script>
     </body>
 </html>
+
+      
+<script>
+      
+$(document).ready(function(){
+    $('.contact_form').on('change', function(e){
+        e.preventDefault();
+        if($('#imageUrl').val() == '') {
+            // alert('Please, select a file.');
+        } else {
+            $.ajax({
+                url:"<?php echo base_url();?>activity/upload_image",
+                method:'POST',
+                data: new FormData(this),
+                contentType:false,
+                cache:false,
+                processData:false,
+                success:function(data){
+                    $('#uploaded_image').html(data);
+                }
+            })
+        }
+
+    });
+});
+
+</script> 

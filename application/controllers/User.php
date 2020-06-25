@@ -321,6 +321,90 @@ class User extends CI_Controller {
     }
 
 
+    function update_user() {
+        
+        $this->form_validation->set_rules('email', 'email', 'required|trim|max_length[45]|min_length[8]|xss_clean|valid_email|strip_tags', 
+            array(
+                'required' => 'Le champs %s est obligatoire.',
+                'max_length' => 'Le  champs %s doit contenir au plus 45 caractères.',
+                'min_length' => 'Le champs %s doit contenir au mois 8 caractères.',
+                'strip_tags' => 'Le  champs %s contient des caractères inapropriés.',
+                'valid_email' => 'Entrez un e-mail valide.'
+            )
+        );
+        
+        $this->form_validation->set_rules('password', 'password', 'required|trim|max_length[45]|min_length[8]|xss_clean|strip_tags', 
+            array(
+                'required' => 'Le champs %s est obligatoire.',
+                'max_length' => 'Le champs %s doit contenir au plus 45 caractères.',
+                'min_length' => 'Le champs %s doit contenir au mois 8 caractères.',
+                'strip_tags' => 'Le champs %s contient des caractères inapropriés.'
+            )
+        );
+        
+        $this->form_validation->set_rules('confirm', 'confirmation', 'required|trim|max_length[45]|min_length[8]|xss_clean|strip_tags|matches[password]', 
+            array(
+                'required' => 'Le champs %s est obligatoire.',
+                'max_length' => 'Le champs %s doit contenir au plus 45 caractères.',
+                'min_length' => 'Le champs %s doit contenir au mois 8 caractères.',
+                'strip_tags' => 'Le champs %s contient des caractères inapropriés.',
+                'matches' => ''
+            )
+        );
+ 
+        $this->form_validation->set_rules('name', 'nom', 'required|trim|max_length[45]|xss_clean|strip_tags', 
+            array(
+                'required' => 'Le champs %s est obligatoire.',
+                'max_length' => 'Le champs %sdoit contenir au plus 45 caractères.',
+                'strip_tags' => 'Le champs %scontient des caractères inapropriés.'
+            )
+        );
+
+        $this->form_validation->set_rules('address', 'addresse', 'required|trim|max_length[255]|xss_clean|strip_tags', 
+            array(
+                'required' => 'Le champs %s est obligatoire.',
+                'max_length' => 'Le champs %sdoit contenir au plus 45 caractères.',
+                'strip_tags' => 'Le champs %scontient des caractères inapropriés.'
+            )
+        );
+
+        $this->form_validation->set_rules('type', 'type', 'required', 
+            array(
+                'required' => 'Le champs %s est obligatoire.'
+            )
+        );
+
+        $this->form_validation->set_rules('bio', 'bio', 'trim|xss_clean|strip_tags', 
+            array(
+                'required' => 'Le champs %s est obligatoire.',
+                'strip_tags' => 'Le champs %s contient des caractères inapropriés.'
+            )
+        );       
+
+        $this->form_validation->set_rules('imageUrl', 'image', 'required|trim|strip_tags', 
+            array(
+                'required' => 'Le champs %s est obligatoire.',
+                'strip_tags' => 'Le champs %s contient des caractères inapropriés.'
+            )
+        );  
+
+        $this->form_validation->set_rules('phone', 'phone', 'required|trim|max_length[15]|min_length[10]|xss_clean|strip_tags', 
+            array(
+                'required' => 'Le champs %s est obligatoire.',
+                'max_length' => 'Le  champs  %s doit contenir au plus 45 caractères.',
+                'min_length' => 'Le champs  %s doit contenir au mois 8 caractères.',
+                'strip_tags' => 'Le champs  %s contient des caractères inapropriés.'
+            )
+        );
+ 
+
+        if($this->form_validation->run()) {
+            
+        }
+         
+    }
+
+
     function sign_in_view() {
         $this->load->view('sign_in', $this->data());
     }

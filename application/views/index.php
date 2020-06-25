@@ -324,7 +324,7 @@
                                             {
                                                 echo '
                                                 <div class="media post_item">
-                                                    <img src="'.base_url().'upload/'.$row->imageUrl.'" alt="post" class="w-25 rounded-0">
+                                                    <img src="'.base_url().'upload/'.$row->imageUrl.'" alt="post" class="w-25 h-100 rounded-0">
                                                     <div class="media-body">
                                                         <a href="'.site_url('activity/show_article/'.$row->id).'"><h3>'.$row->title.'r</h3></a>
                                                         <p>Le '.$row->date.' à '.$row->time.'</p>

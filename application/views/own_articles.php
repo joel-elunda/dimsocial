@@ -197,50 +197,53 @@
 
                             <?php 
 
-                                if(isset($user) && isset($user_articles)) 
+                                if(isset($user) && isset($own_articles)) 
                                 {
-                                    if( ! empty($user) && ! empty($user_articles) )
+                                    if( ! empty($user) && ! empty($own_articles) )
                                     {
-                                        $count = count($user_articles);
-                                        print_r($user_articles);
-                                        // echo 
-                                        // '
-                                        // <div class="col-lg-12">
-                                        //     <div class="feature-img">
-                                        //     <img class="img-fluid" src="'.base_url().'upload/'.$activity[0]->imageUrl.'" alt="">
-                                        //     </div>									
-                                        // </div>
-    
-                                        // <div class="col-lg-3  col-md-3">
-                                        //     <div class="blog_info text-right">
-                                        //         <div class="post_tag">
-                                        //             <a class="active">'.$activity[0]->domain.'</a>  
-                                        //         </div>
-                                        //         <ul class="blog_meta list">
-                                        //             <li><a href="'.site_url('user/show_user/'.$user[0]->id).'">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
-                                        //             <!--<li><a href="#">'.$activity[0]->experience.' mois d\'expériences<i class="lnr lnr-calendar-full"></i></a></li>
-                                        //              <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
-                                        //             <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li> -->
-                                        //         </ul>
-                                        //         <!--
-                                        //         <ul class="social-links">
-                                        //             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        //             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        //             <li><a href="#"><i class="fa fa-github"></i></a></li>
-                                        //             <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                        //         </ul>
-                                        //         -->
-                                        //     </div>
-                                        // </div>
+                                        $count = count($own_articles);
+                                        for ($i=0; $i < $count; $i++) { 
+                                            echo 
+                                            '
+                                            <div class="col-lg-12 text-center">
+                                                <div class="feature-img">
+                                                <img class="img-fluid" src="'.base_url().'upload/'.$own_articles[$i]->imageUrl.'" alt="">
+                                                </div>									
+                                            </div>
+        
+                                            <div class="col-lg-3  col-md-3">
+                                                <div class="blog_info text-right">
+                                                    <div class="post_tag">
+                                                      <!--  <a class="active">'.$own_articles[$i]->id_category.'</a>  -->
+                                                    </div>
+                                                    <ul class="blog_meta list">
+                                                        <li><a href="'.site_url('user/show_user/'.$user[0]->id).'">'.$user[0]->name.'<i class="lnr lnr-user"></i></a></li>
+                                                        <li><a href="#">... mois d\'expériences<i class="lnr lnr-calendar-full"></i></a></li>
+                                                        <li><a href="#">'.$own_articles[$i]->view.' Viues<i class="lnr lnr-eye"></i></a></li>
+                                                        <!--<li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li> -->
+                                                    </ul>
+                                                    <!--
+                                                    <ul class="social-links">
+                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-github"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                                    </ul>
+                                                    -->
+                                                </div>
+                                            </div>
+                                            
+                                
+                                            <div class="col-lg-9 col-md-9 blog_details"> 
+                                                <h2>'.$own_articles[$i]->title.'</h2>
+                                                <p class="excert">
+                                                '.$own_articles[$i]->description.'
+                                                </p>
+                                            </div> 
+                                              
+                                            ';
+                                        }
                                         
-                               
-                                        // <div class="col-lg-9 col-md-9 blog_details"> 
-                                        //     <h2>'.$activity[0]->name.'</h2>
-                                        //     <p class="excert">
-                                        //     '.$activity[0]->description.'
-                                        //     </p>
-                                        // </div> 
-                                        // ';
                                     } else {
                                         echo '
                                         <div class="alert alert-success bg-transparent border-0" role="alert">
@@ -453,17 +456,17 @@
 
                             <?php 
                             
-                                if(isset($articles) && ! empty($articles)) 
+                                if(isset($own_articles) && ! empty($own_articles)) 
                                 {
-                                    $count = count($articles);
+                                    $count = count($own_articles);
                                     for ($i=0; $i < $count; $i++) { 
                                         echo
                                         '
                                         <div class="media post_item">
-                                            <img class="img-fluid" width="100" src="'.base_url().'upload/'.$articles[$i]->imageUrl.'" alt="">
+                                           <!-- <img class="img-fluid w-25 img-responsive"  src="'.base_url().'upload/'.$own_articles[$i]->imageUrl.'" alt=""> -->
                                             <div class="media-body">
-                                                <a href="'.site_url('activity/show_article/'.$articles[$i]->id).'"><h3>'.$articles[$i]->title.'</h3></a>
-                                                <p>Le '.$articles[$i]->date.', '.$articles[$i]->time.'</p>
+                                                <a href="'.site_url('activity/show_article/'.$own_articles[$i]->id).'"><h3>'.$own_articles[$i]->title.'</h3></a>
+                                                <p>Le '.$own_articles[$i]->date.', '.$own_articles[$i]->time.'</p>
                                             </div>
                                         </div>
                                         ';

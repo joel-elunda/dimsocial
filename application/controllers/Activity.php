@@ -51,6 +51,22 @@ class Activity extends CI_Controller {
     }
 
     /**
+     * user_articles()
+     *
+     * @return void
+     */
+    public function user_articles() {
+        $id_user = $this->uri->segment(3);
+        $data['own_articles'] = $this->ActivityModel->get_desc_articles_where_user($id_user);
+        if( ! empty($data) || $data != NULL) {
+            $data['user'] = $this->UserModel->get_user_where_id($id_user);
+            $this->load->view('own_articles', $data);
+        } else {
+            echo 'Error databasee';
+        }
+    }
+
+    /**
      * iew_own_articles()
      *
      * @return void
@@ -121,7 +137,7 @@ class Activity extends CI_Controller {
         if(isset($this->session->id) || isset($this->session->id)) {
             $data['user'] = $this->UserModel->get_user_where_id($this->session->id);
             $data['activity'] = $this->ActivityModel->get_where_activity($this->session->id);
-            $data['user_articles'] = $this->ActivityModel->get_desc_articles_where_user($this->session->id);
+            $data['own_articles'] = $this->ActivityModel->get_desc_articles_where_user($this->session->id);
         }
 
         $data['domains'] = $this->ActivityModel->get_domains();
@@ -171,8 +187,7 @@ class Activity extends CI_Controller {
 
         if($this->form_validation->run()) { 
             $is_done = $this->ActivityModel->add_article($this->article_input_data());
-            if($is_done == TRUE) {
-
+            if($is_done == TRUE) { 
                 $this->load->view('own_articles', $this->data());
             } else {
                 echo 'Error on Database manipulations.';
@@ -208,15 +223,16 @@ class Activity extends CI_Controller {
                 $data['category'] = $this->ActivityModel->get_where_domain($id_category); 
                 $this->ActivityModel->increment_views((int) $data['article']->result()[0]->id);
             }
-    
+            
             // $data['comments'] = $this->ActivityModel->get_comments_article($data['article']->result()[0]->id);
             # Increment articles views
-            $this->load->view('show_article', $data);
+            $this->load->view('show_article', $data);   
         } else {
             echo 'Article ID not found.';
         }
     }
 
+ 
 
     /**
      * show_articles()
